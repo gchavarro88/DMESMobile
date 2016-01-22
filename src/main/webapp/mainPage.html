@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>.:FATCON - Manager:.</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        librerias-->
+        <link rel="stylesheet" href="lib/bootstrap_3.3.6/css/bootstrap.css">         
+        <link rel="stylesheet" href="lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="lib/jquery-1.11.1/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript"  src="lib/bootstrap_3.3.6/js/bootstrap.min.js"></script>     
+        <script src="lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+        <script src="frontEnd/mainPage/mainPage.js" type="text/javascript"></script>
+        <script src="frontEnd/utilities/variables.js" type="text/javascript"></script>
+        <script src="frontEnd/utilities/utilities.js" type="text/javascript"></script>
+        <script src="lib/js/jquery.blockUI.js"></script>
+        <link rel="stylesheet" href="lib/css/mainPage.css">
+    </head>
+    <body>
+        <div>
+            <div data-url="panel-responsive-page1" data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title=".:FATCON - Manager:.">
+                <!--Codigo de mensaje-->
+                <div data-role="popup" id="messages" data-overlay-theme="a" data-theme="b" 
+                     data-dismissible="true" style="width:100%;
+                     max-height:60%;">
+                    <div data-role="header" data-theme="a">
+                        <center>
+                            <p id="titleMessage" class="titleMessage">        
+                            </p>
+                        </center>
+                        </br>
+                    </div>
+                    <div role="main" class="ui-content">    
+                        </br></br>
+                        <center>
+                            <p id="contentMessage" class="contentMessage"></p>
+                        </center>
+                        </br>
+                    </div>
+                </div>
+
+                <div data-role="header" style="height: 40px;" data-theme="b">
+                    <div class="titleMainPage" >Control de Producción</div>
+                    <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+                    <a href="#user-panel" data-icon="user" data-iconpos="notext">User</a>
+                </div><!-- /header -->
+                <div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b">
+                    <iframe src="views/productionOrder.html" class="iframeMain" ></iframe>
+                </div><!-- /content -->
+                <div data-role="panel" data-display="reveal" data-theme="b" id="nav-panel" data-position="left">
+                    <div  style="height: 70px;" >
+                        <div class="titleMainPage">Menú Principal</div>
+                    </div>
+                    <ul data-role="listview">
+
+                        <li data-icon="phone" class="ui-shadow-icon"><a href="#" class="itemPanelLeft">Llamado</a></li>
+                        <li data-icon="alert" class="ui-shadow-icon"><a href="#" class="itemPanelLeft">Paro</a></li>
+                        <li data-icon="action" class="ui-shadow-icon"><a href="#" class="itemPanelLeft">Ordenes</a></li>
+                        <li data-icon="check" class="ui-shadow-icon"><a href="#" class="itemPanelLeft">Revisión</a></li>
+                        <li data-icon="mail" class="ui-shadow-icon"><a href="#" class="itemPanelLeft">Mensaje</a></li>
+
+                    </ul>
+                </div><!-- /panel -->
+                <div data-role="panel" data-position="right" data-display="reveal" data-theme="b" id="user-panel">
+                    
+                    <p class="labelText" style="font-size: 30px;">Datos de Usuario</p>
+                        <label class="labelText">Nombre:</label>
+                        <label id="nameUser" class="labelText"></label>
+                        </br>
+                        <label class="labelText">Cargo:</label>
+                        <label id="positionUser" class="labelText"></label>
+                        </br></br>
+                        </br></br>
+                        </br></br>
+                        </br></br>
+                        </br></br>
+                        </br></br>
+                        <button class="ui-btn ui-btn-b" 
+                        style="color:#44FFEC; border:#44FFEC 1px solid;" 
+                        id="btnCloseSesion"
+                        >Cerrar Sesión</button>
+                </div><!-- /panel -->
+            </div>
+        </div>
+    </body>
+</html>
+

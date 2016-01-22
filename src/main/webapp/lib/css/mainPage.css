@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/12/2015, 10:35:39 PM
+    Author     : gchavarro88
+*/
+
+.titleMainPage
+{
+    vertical-align: central;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.iframeMain
+{
+    width: 98%; 
+    height: 90%; 
+    position: fixed;
+    margin-left: -10px; 
+    margin-top: -10px;
+    background-color: #000;
+}
+
+.itemPanelLeft
+{
+    height: 70px;
+    vertical-align: central;
+    text-align: center;
+}
+
+.labelText
+{
+    color:#44FFEC;
+}
+
+.messages
+{
+    text-align: center;
+    alignment-adjust: central;
+    background-color: rgba(91,192,222, 0.7);
+/*    background-image: -webkit-linear-gradient(top, #5bc0de, #00a2d3);
+    background-image: -moz-linear-gradient(top, #5bc0de, #00a2d3);
+    background-image: -o-linear-gradient(top, #5bc0de, #00a2d3);
+    background-image: linear-gradient(to bottom, #5bc0de, #00a2d3);*/
+    border-radius: 8px 5px 8px 5px;
+    -webkit-border-radius: 8px 5px 8px 5px;
+    -moz-border-radius: 8px 5px 8px 5px;
+    color: #FFF;
+    vertical-align: middle;
+    text-shadow: 1px 1px 1px black;
+}
+
+
+.titleMessage
+{
+    padding-left: 15px;
+    padding-right:15px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.contentMessage
+{
+    padding-left: 15px;
+    padding-right:15px;
+    font-size: 32px;
+}

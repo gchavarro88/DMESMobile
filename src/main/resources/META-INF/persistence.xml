@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="DMESMobileUnit" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>co.sip.dmesmobile.entitys.OtMaintenance</class>
+    <class>co.sip.dmesmobile.entitys.OtMaintenanceCorrective</class>
+    <class>co.sip.dmesmobile.entitys.OtMaintenancePreventive</class>
+    <class>co.sip.dmesmobile.entitys.OtMaintenanceSchedule</class>
+    <class>co.sip.dmesmobile.entitys.OtProductionOrder</class>
+    <class>co.sip.dmesmobile.entitys.OtProductionProduct</class>
+    <class>co.sip.dmesmobile.entitys.ScClassType</class>
+    <class>co.sip.dmesmobile.entitys.ScCompetencies</class>
+    <class>co.sip.dmesmobile.entitys.ScCostCenter</class>
+    <class>co.sip.dmesmobile.entitys.ScDistributionUnit</class>
+    <class>co.sip.dmesmobile.entitys.ScDocuments</class>
+    <class>co.sip.dmesmobile.entitys.ScEmployee</class>
+    <class>co.sip.dmesmobile.entitys.ScFactoryLocation</class>
+    <class>co.sip.dmesmobile.entitys.ScInput</class>
+    <class>co.sip.dmesmobile.entitys.ScInputDimension</class>
+    <class>co.sip.dmesmobile.entitys.ScInputDocuments</class>
+    <class>co.sip.dmesmobile.entitys.ScInputEquivalence</class>
+    <class>co.sip.dmesmobile.entitys.ScInputFeactures</class>
+    <class>co.sip.dmesmobile.entitys.ScInputObservations</class>
+    <class>co.sip.dmesmobile.entitys.ScInputSpecifications</class>
+    <class>co.sip.dmesmobile.entitys.ScInputStock</class>
+    <class>co.sip.dmesmobile.entitys.ScLocation</class>
+    <class>co.sip.dmesmobile.entitys.ScMachine</class>
+    <class>co.sip.dmesmobile.entitys.ScMachineAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScMachineConditions</class>
+    <class>co.sip.dmesmobile.entitys.ScMachineDocument</class>
+    <class>co.sip.dmesmobile.entitys.ScMachinePart</class>
+    <class>co.sip.dmesmobile.entitys.ScMachinePartAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScMachinePartDocument</class>
+    <class>co.sip.dmesmobile.entitys.ScMails</class>
+    <class>co.sip.dmesmobile.entitys.ScMaintenanceActivity</class>
+    <class>co.sip.dmesmobile.entitys.ScMaintenanceClasification</class>
+    <class>co.sip.dmesmobile.entitys.ScMaintenanceDamage</class>
+    <class>co.sip.dmesmobile.entitys.ScMaintenancePlan</class>
+    <class>co.sip.dmesmobile.entitys.ScMaintenanceState</class>
+    <class>co.sip.dmesmobile.entitys.ScMeasureUnit</class>
+    <class>co.sip.dmesmobile.entitys.ScModulePermission</class>
+    <class>co.sip.dmesmobile.entitys.ScModulePermissionByRole</class>
+    <class>co.sip.dmesmobile.entitys.ScMoney</class>
+    <class>co.sip.dmesmobile.entitys.ScOperatingConditions</class>
+    <class>co.sip.dmesmobile.entitys.ScPackingUnit</class>
+    <class>co.sip.dmesmobile.entitys.ScPartner</class>
+    <class>co.sip.dmesmobile.entitys.ScPartsAndConsumables</class>
+    <class>co.sip.dmesmobile.entitys.ScPerson</class>
+    <class>co.sip.dmesmobile.entitys.ScPersonDocumentationAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScPersonObservations</class>
+    <class>co.sip.dmesmobile.entitys.ScPersonSpecifications</class>
+    <class>co.sip.dmesmobile.entitys.ScPhones</class>
+    <class>co.sip.dmesmobile.entitys.ScPhoto</class>
+    <class>co.sip.dmesmobile.entitys.ScPriority</class>
+    <class>co.sip.dmesmobile.entitys.ScProcessAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScProcessEmployee</class>
+    <class>co.sip.dmesmobile.entitys.ScProcessInput</class>
+    <class>co.sip.dmesmobile.entitys.ScProcessMachine</class>
+    <class>co.sip.dmesmobile.entitys.ScProcessProduct</class>
+    <class>co.sip.dmesmobile.entitys.ScProcessType</class>
+    <class>co.sip.dmesmobile.entitys.ScProductAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScProductDocuments</class>
+    <class>co.sip.dmesmobile.entitys.ScProductFormulation</class>
+    <class>co.sip.dmesmobile.entitys.ScProductionState</class>
+    <class>co.sip.dmesmobile.entitys.ScReplacement</class>
+    <class>co.sip.dmesmobile.entitys.ScReplacementAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScReplacementDocuments</class>
+    <class>co.sip.dmesmobile.entitys.ScRoles</class>
+    <class>co.sip.dmesmobile.entitys.ScServicesOrProducts</class>
+    <class>co.sip.dmesmobile.entitys.ScStopMachine</class>
+    <class>co.sip.dmesmobile.entitys.ScStore</class>
+    <class>co.sip.dmesmobile.entitys.ScStoreOrder</class>
+    <class>co.sip.dmesmobile.entitys.ScStoreOrderItem</class>
+    <class>co.sip.dmesmobile.entitys.ScStoreOrderState</class>
+    <class>co.sip.dmesmobile.entitys.ScStoreRequisition</class>
+    <class>co.sip.dmesmobile.entitys.ScStoreRequisitionItem</class>
+    <class>co.sip.dmesmobile.entitys.ScStoreRequisitionState</class>
+    <class>co.sip.dmesmobile.entitys.ScTime</class>
+    <class>co.sip.dmesmobile.entitys.ScTool</class>
+    <class>co.sip.dmesmobile.entitys.ScToolAttached</class>
+    <class>co.sip.dmesmobile.entitys.ScToolDocuments</class>
+    <class>co.sip.dmesmobile.entitys.ScTools</class>
+    <class>co.sip.dmesmobile.entitys.ScTurn</class>
+    <class>co.sip.dmesmobile.entitys.ScType</class>
+    <class>co.sip.dmesmobile.entitys.ScUsers</class>
+    <class>co.sip.dmesmobile.entitys.ScWorkExperience</class>
+    <class>co.sip.dmesmobile.entitys.ScWorkforce</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>NONE</validation-mode>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/DMES"/>
+      <property name="javax.persistence.jdbc.password" value="sipPrueba"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="sipPrueba"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+    </properties>
+  </persistence-unit>
+</persistence>
