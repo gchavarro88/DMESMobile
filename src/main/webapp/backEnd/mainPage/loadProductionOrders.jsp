@@ -3,6 +3,7 @@
     Created on : 15/01/2016, 12:48:52 AM
     Author     : gchavarro88
 --%>
+<%@page import="co.sip.dmesmobile.entitys.OtProductionOrder"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sip.dmesmobile.utilities.Utilities"%>
 <%@page import="co.sip.dmesmobile.entitys.ScMachine"%>
@@ -14,10 +15,21 @@
     
     
     ValidateSesion controller = new ValidateSesion();
+    List<OtProductionOrder> productionOrders = null;
     try
-    {
-            List<ScMachine> machines = controller.findAllMachine();
-            out.print(Utilities.fromArrayToJSON(machines, machines.get(0).getClass().getCanonicalName(),"listMachines"));
+    {   
+        String valueMachine = request.getParameter("idMachine");
+        Long idMachine = (valueMachine != null && valueMachine.length() > 0)? Long.parseLong(valueMachine):-1;
+        if(idMachine > 0)
+        {
+            productionOrders = controller.findCurrentProductionOrders(idMachine);
+            out.print(Utilities.fromArrayToJSON(productionOrders, productionOrders.get(0).getClass().getCanonicalName(),"listProductionOrders"));
+        }
+        else
+        {
+            throw new Exception("Error en el ID  de la máquina "+idMachine);
+        }
+        
     }
     catch(Exception e)
     {

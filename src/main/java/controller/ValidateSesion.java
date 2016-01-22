@@ -7,9 +7,12 @@ package controller;
 
 import co.sip.dmesmobile.bs.ScPersonDao;
 import co.sip.dmesmobile.bs.ScUsersDao;
+import co.sip.dmesmobile.entitys.OtProductionOrder;
 import co.sip.dmesmobile.entitys.ScEmployee;
 import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScPerson;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
 
@@ -86,6 +89,41 @@ public class ValidateSesion
         }
         return result;
     }
+    
+    
+    public List<OtProductionOrder> findCurrentProductionOrders(long idMachine)
+    {
+        Date startDate = new Date();
+        Date finalDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        startDate = calendar.getTime();
+        
+        calendar.setTime(finalDate);
+        calendar.set(Calendar.HOUR, 11);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        finalDate = calendar.getTime();
+        
+        setPersonDao(new ScPersonDao());
+        List<OtProductionOrder> result = null;
+        try
+        {
+            result = getPersonDao().getProductionOrderByIdMachine(idMachine, startDate, finalDate);
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando consultar los datos de las ordenes de producción de la máquina con id "+idMachine,e);
+            throw e;
+        }
+        return result;
+    }
+    
     
     public ScPersonDao getPersonDao()
     {

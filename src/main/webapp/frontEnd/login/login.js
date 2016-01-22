@@ -12,14 +12,6 @@ var listMachines= null;
 $(document).ready(function()
 {
     
-    
-    $("a").on("click", function ()
-    {
-        var selection = $(this).text().trim();
-        setMachineSystem(selection);
-    });
-    
-    
     $("#btnLogin").on( "click", function() 
     {   
         if(validAssociatedMachine())
@@ -120,7 +112,7 @@ function checkFields()
     function getListMachines()
     {
         $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
-        var url = "backEnd/mainPage/loadProductionOrders.jsp";
+        var url = "backEnd/mainPage/loadMachines.jsp";
         $.ajax
         ({
             url: url,
@@ -133,18 +125,27 @@ function checkFields()
                     if(listMachines.listMachines !== undefined && listMachines.listMachines !== null)
                     {
                         var machinesConcat = "";
+                        var $newElementList;
                         for(var i = 0; i< listMachines.listMachines.length; i++)
                         {
                             machinesConcat += "<li data-icon='gear'> <a href='#'><span class='contentMessage'>"+
                                 "";
-                                machinesConcat += listMachines.listMachines[i].name+" - "+
-                                listMachines.listMachines[i].serie+" - "+listMachines.listMachines[i].mark+"</span></a></li>";
+                                $newElementList = $('#listMachinesSelect li:first').clone();
+                                $newElementList.children().children().text(listMachines.listMachines[i].name+" - "+
+                                listMachines.listMachines[i].serie+" - "+listMachines.listMachines[i].mark+" - "+listMachines.listMachines[i].idMachine);
+                                $($newElementList).appendTo("#listMachinesSelect");
                         }
-                        $("#listMachinesSelect").html(machinesConcat);
+                        $('#listMachinesSelect li:first').remove();
                         $("#titlePrompt").text("Asignación de Máquina");
                         $("#promptMachine").load();
                         $("#promptMachine").popup("open");
                         $.unblockUI();
+                        
+                        $("#listMachinesSelect li").on("click", function ()
+                        {
+                            var selection = $(this).text().trim();
+                            setMachineSystem(selection);
+                        });
                     }
                     else if(listMachines.message !== undefined && listMachines.message !== null)
                     {
@@ -161,7 +162,7 @@ function checkFields()
     
     function validAssociatedMachine()
     {
-        if(!checkCookie(MACHINE_ASSOCIATED))
+        if(!checkCookie(MACHINE_ASSOCIATED_NAME))
         {
             getListMachines();
             return false;
@@ -174,7 +175,17 @@ function checkFields()
     
     function setMachineSystem(value)
     {
-        setCookie(MACHINE_ASSOCIATED, value, 1);
+        var fields=null;
+        if(value !== undefined && value !== null
+                 && value.length > 0)
+        {
+            fields = value.split(" - ");
+        }
+        
+        setCookie(MACHINE_ASSOCIATED_NAME, fields[0], 1);
+        setCookie(MACHINE_ASSOCIATED_SERIE, fields[1], 1);
+        setCookie(MACHINE_ASSOCIATED_MARK, fields[2], 1);
+        setCookie(MACHINE_ASSOCIATED_ID, fields[3], 1);
         $("#promptMachine").popup("close");
         checkFields();
         

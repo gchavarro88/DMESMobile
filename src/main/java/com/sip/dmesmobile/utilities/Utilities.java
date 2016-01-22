@@ -189,10 +189,25 @@ public class Utilities
                         if(!fields[i].getName().equals("serialVersionUID"))
                         {
                             result+= "\""+fields[i].getName()+"\":\""+fields[i].get(object)+"\"";
+                            result+=","; 
+                        }
+                    }
+                    else if(isForeing(fields[i].getGenericType().toString()))
+                    {
+                        if(!isList(fields[i].getGenericType().toString()))
+                        {
+                            result+= "\""+fields[i].getName()+"\":";
+                            result+= fromObjectToJSON(fields[i].get(object), fields[i].getGenericType().toString().replace("class ", ""));
                             result+=",";
                         }
                     }
-                }
+                    else if(isList(fields[i].getGenericType().toString()))
+                    {
+                        result+= "\""+fields[i].getName()+"\":";
+                        result+= fromArrayToJSON(fields[i].get(object), ((List<Object>) fields[i].get(object)).get(0).getClass().getCanonicalName(), fields[i].getName());
+                        result+=",";
+                    }
+                } 
                 result = result.substring(0, result.length()-1);
             
         }
@@ -207,6 +222,27 @@ public class Utilities
         if(type.contains("co.sip.dmesmobile.entitys") || type.contains("java.util.List"))
         {
             result = false;
+        }
+        return result;
+    }
+    
+    public static boolean isList(String type)
+    {
+        boolean result = false;
+        if(type.contains("java.util.List"))
+        {
+            result = true;
+        }
+        return result;
+    }
+    
+    public static boolean isForeing(String type)
+    {
+        boolean result = false;
+        
+        if(type.contains("co.sip.dmesmobile.entitys"))
+        {
+            result = true;
         }
         return result;
     }

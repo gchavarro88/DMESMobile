@@ -6,6 +6,7 @@
 var person_g = null; //Persona asociada al usuario de la sesion
 var employee_g = null; //Empleado asociado al empleado de la sesion
 var client = null; //Datos del cliente
+var productionOrdersList = null;//
 //Inicio que captura todos los eventos de JQuery
 $(document).ready(function ()
 {
@@ -102,49 +103,7 @@ $(document).ready(function ()
                 });
     }
     
-    //Validación del usuario
-    function getDataClient()
-    {
-        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
-        var url = "backEnd/mainPage/loadProductionOrders.jsp";
-        $.ajax
-                ({
-                    url: url,
-                    method: "POST"
-                })
-                .done(function (data, status)
-                {
-                    data = convertStringToJSON(data);
-                    if (data.address !== undefined && data.address !== null)
-                    {
-                        client = data;
-                        alert(client.address +'   '+client.host+" local: "+client.iplocal);
-                    }
-                    else if (data.message === null )
-                    {
-                        addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
-                        var urlLoginPage = "Login.html";
-                        $(location).attr('href', urlLoginPage);
-                        $.unblockUI();
-                    }
-                    else if (data.message === "EMPLEADO_INVALIDO")
-                    {
-                        addInfoMessage("Sesión No Válida", "Debe ingresar nuevamente sus credenciales", 5);
-                        var urlLoginPage = "Login.html";
-                        $(location).attr('href', urlLoginPage);
-                        $.unblockUI();
-                    }
-
-                    $.unblockUI();
-                })
-                .fail(function (data, status)
-                {
-                    addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
-                    var urlLoginPage = "Login.html";
-                    $(location).attr('href', urlLoginPage);
-                    $.unblockUI();
-                });
-    }
+    
     
     
     //Validación del usuario
