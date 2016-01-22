@@ -9,7 +9,9 @@ var productionOrdersList = null;//
 //Inicio que captura todos los eventos de JQuery
 $(document).ready(function ()
 {
-
+    
+    getDataProductionOrders();
+    
     //Validación del usuario
     function getDataProductionOrders()
     {
@@ -54,6 +56,9 @@ $(document).ready(function ()
                     $.unblockUI();
                 });
     }
+    
+    
+    
     
     $("#table-carr").append("<tr>"+
                             "<th>7</th>"+

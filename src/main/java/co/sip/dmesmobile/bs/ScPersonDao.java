@@ -128,6 +128,8 @@ public class ScPersonDao implements IScPerson
     @Override
     public ScMachine getScMachineById(long idMachine)
     {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        
         ScMachine result = null;
         try
         {
@@ -148,6 +150,7 @@ public class ScPersonDao implements IScPerson
     @Override
     public List<OtProductionOrder> getProductionOrderByIdMachine(long idMachine, Date startDate, Date finalDate)
     {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
         List<OtProductionOrder> result = null;
         List<OtProductionOrder> resultFiltered = null;
         try
