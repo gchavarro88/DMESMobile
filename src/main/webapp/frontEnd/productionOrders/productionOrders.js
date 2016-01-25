@@ -29,10 +29,31 @@ $(document).ready(function ()
                 .done(function (data, status)
                 {
                     data = convertStringToJSON(data);
-                    if (data.idProductionOrder !== undefined && data.address !== null)
+                    if (data.listProductionOrders !== undefined && data.listProductionOrders !== null)
                     {
+                        $("#tableOrders").hide();
+                        var tableText = "";
+                        var $newElementList;
                         productionOrdersList = data;
-                        
+                        for(var i=0; i < productionOrdersList.listProductionOrders.length; i++)
+                        {
+                            $newElementList = $('#tableOrders tr:last').clone();
+                            $newElementList.find("th").html("<a href='#'>"+getOrderNumber(productionOrdersList.listProductionOrders[i].idProductionOrder,
+                            productionOrdersList.listProductionOrders[i].creationDate,'OP')+"</a>");
+                            $newElementList.find("td:eq(0)").text(productionOrdersList.listProductionOrders[i].name);
+                            $newElementList.find("td:eq(1)").text(getDate(productionOrdersList.listProductionOrders[i].startDate));
+                            $newElementList.find("td:eq(2)").text(getDate(productionOrdersList.listProductionOrders[i].endDate));
+                            $newElementList.find("td:eq(3)").text(productionOrdersList.listProductionOrders[i].idProductionState.description);
+                            $newElementList.trigger("refresh");
+                            $newElementList.appendTo("#bodyTableOrders");
+                            $("#bodyTableOrders").trigger("refresh");
+                        }
+                        $("#tableOrders").find("tr:eq(1)").remove();                        
+                        $("#tableOrders").show(2000, "swing", function()
+                        {
+                            addInfoMessage("Información Exitosa", "Los datos de producción fueron cargados exitosamente", 5);
+                        });
+                        $("#tableOrders").trigger("create");
                     }
                     else if (data.message === null )
                     {

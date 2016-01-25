@@ -16,41 +16,53 @@
         <script src="../frontEnd/utilities/utilities.js" type="text/javascript"></script>
         <script src="../lib/js/jquery.blockUI.js"></script>
         <link rel="stylesheet" href="../lib/css/productionOrder.css" />
-        <script src="../frontEnd/productionOrders/productonOrders.js" type="text/javascript"></script>
+        <script src="../frontEnd/productionOrders/productionOrders.js" type="text/javascript"></script>
     </head>
     <body>
         <div>
             <div data-url="panel-responsive-page2" data-role="page" class="jqm-demos ui-responsive-panel" data-theme="b" 
                  id="panel-responsive-page2" data-title=".:FATCON - Manager:.">
-
-                <table data-role="table" id="table-carr" data-mode="columntoggle" 
+                
+                <!--Codigo de mensaje-->
+                <div data-role="popup" id="messages" data-overlay-theme="a" data-theme="b" 
+                     data-dismissible="true" style="width:100%;
+                     max-height:60%;">
+                    <div data-role="header" data-theme="a">
+                        <center>
+                            <p id="titleMessage" class="titleMessage">        
+                            </p>
+                        </center>
+                        </br>
+                    </div>
+                    <div role="main" class="ui-content">    
+                        </br></br>
+                        <center>
+                            <p id="contentMessage" class="contentMessage"></p>
+                        </center>
+                        </br>
+                    </div>
+                </div>
+                
+                <table data-role="table" id="tableOrders" data-mode="reflow" 
                        class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" 
-                       data-column-btn-text="Columnas..." data-column-popup-theme="b">
+                       >
                     <thead>
                         <tr class="ui-bar-d">
-                            <th data-priority="1">No Orden</th>
-                            <th data-priority="2">Descripción</th>
-                            <th data-priority="3">Fecha Creación</th>
-                            <th data-priority="4">Fecha Finalización</th>
-                            <th data-priority="5">Estado</th>
+                            <th data-priority="1" class="titleRowProductionOrder">No Orden</th>
+                            <th data-priority="2" class="titleRowProductionOrder">Descripción</th>
+                            <th data-priority="5" class="titleRowProductionOrder">Fecha de Inicio</th>
+                            <th data-priority="4" class="titleRowProductionOrder">Fecha Finalización</th>
+                            <th data-priority="3" class="titleRowProductionOrder">Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="bodyTableOrders" class="rowProductionOrder">
                         <tr>
-                            <th>1</th>
-                            <td><a href="http://en.wikipedia.org/wiki/Citizen_Kane" data-rel="external">Citizen Kane</a></td>
-                            <td>1941</td>
-                            <td>100%</td>
-                            <td>74</td>
+                            <th class='rowProductionOrder'></th>
+                            <td class='rowProductionOrder'></td>
+                            <td class='rowProductionOrder'></td>
+                            <td class='rowProductionOrder'></td>
+                            <td class='rowProductionOrder'></td>
                         </tr>
-                        <tr>
-                            <th>2</th>
-                            <td><a href="http://en.wikipedia.org/wiki/Casablanca_(film)" data-rel="external">Casablanca</a></td>
-                            <td>1942</td>
-                            <td>97%</td>
-                            <td>64</td>
-                        </tr>
-                        
                     </tbody>
                 </table>
             </div>

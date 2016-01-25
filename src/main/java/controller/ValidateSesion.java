@@ -11,9 +11,14 @@ import co.sip.dmesmobile.entitys.OtProductionOrder;
 import co.sip.dmesmobile.entitys.ScEmployee;
 import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScPerson;
+import com.sip.dmesmobile.utilities.DMESConstants;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -28,18 +33,21 @@ public class ValidateSesion
     ScEmployee employee;
     ScMachine machine;
     
-    public ScPerson findPersonById(Long idPerson)
+    public ScPerson findPersonById(Long idPerson) throws Exception
     {
         setPersonDao(new ScPersonDao());
-        try
+        try 
         {
             setPerson(getPersonDao().getScPersonById(idPerson));
+            
         }
         catch (Exception e)
         {
             log.error("Error intentando consultar los datos personales del usuario",e);
             throw e;
+            
         }
+        
        return getPerson();
     }
     

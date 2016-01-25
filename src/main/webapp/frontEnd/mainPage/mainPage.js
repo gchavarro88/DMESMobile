@@ -153,6 +153,56 @@ $(document).ready(function ()
         
     });
     
+    $("#btnCloseSesion").on( "click", function() {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        closeSesion();
+        $.unblockUI();
+        
+    });
+    
+    $("#llamado").on( "click", function() {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        $("#iframeMain").attr("src", "http://www.mercadolibre.com");
+        $.unblockUI();
+    });
+    $("#paro").on( "click", function() {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        $("#iframeMain").attr("src", "views/stopProduction.html");
+        $.unblockUI();
+    });
+    
+    $("#ordenes").on( "click", function() {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        $("#iframeMain").attr("src", "views/productionOrder.html");
+        $.unblockUI();
+    });
+    
+    $("#revision").on( "click", function() {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        $("#iframeMain").attr("src", "views/stopProduction.html");
+        $.unblockUI();
+    }) ;
+    
+    $("#mensaje").on( "click", function() {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+//        $("#iframeMain").attr("src", "views/stopProduction.html");
+        addInfoMessage("Página en Construcción", "La antena para mensajes no se encuentra configurada</br>Por favor contacte al administrador.", 5);
+        $.unblockUI();
+    }) ;
+    
+    $( document ).on( "pagecreate", "#demo-page", function() {
+                $( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
+                    // We check if there is no open panel on the page because otherwise
+                    // a swipe to close the left panel would also open the right panel (and v.v.).
+                    // We do this by checking the data that the framework stores on the page element (panel: open).
+                        if ( e.type === "swipeleft" ) {
+                            $( "#nav-panel" ).panel( "open" );
+                        } else if ( e.type === "swiperight" ) {
+                            $( "#user-panel" ).panel( "open" );
+                        }
+                });
+            });
+    
 });
 
 

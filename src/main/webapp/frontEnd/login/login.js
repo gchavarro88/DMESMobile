@@ -11,6 +11,16 @@ var listMachines= null;
 //Inicio que captura todos los eventos de JQuery
 $(document).ready(function()
 {
+    $(document).keypress(function(key)  
+    {
+        if(key.which === 13)     
+        {
+            if(validAssociatedMachine())
+            {
+                checkFields();    
+            }
+        } 
+    });
     
     $("#btnLogin").on( "click", function() 
     {   
@@ -182,9 +192,9 @@ function checkFields()
             fields = value.split(" - ");
         }
         
-        setCookie(MACHINE_ASSOCIATED_NAME, fields[0], 1);
-        setCookie(MACHINE_ASSOCIATED_SERIE, fields[1], 1);
-        setCookie(MACHINE_ASSOCIATED_MARK, fields[2], 1);
+        setCookie(MACHINE_ASSOCIATED_NAME, removeAccent(fields[0]), 1);
+        setCookie(MACHINE_ASSOCIATED_SERIE, removeAccent(fields[1]), 1);
+        setCookie(MACHINE_ASSOCIATED_MARK, removeAccent(fields[2]), 1);
         setCookie(MACHINE_ASSOCIATED_ID, fields[3], 1);
         $("#promptMachine").popup("close");
         checkFields();

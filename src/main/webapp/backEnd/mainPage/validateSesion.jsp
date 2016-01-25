@@ -5,6 +5,10 @@
 --%>
 
 
+<%@page import="com.sip.dmesmobile.utilities.DMESConstants"%>
+<%@page import="java.io.File"%>
+<%@page import="java.io.FileReader"%>
+<%@page import="java.io.BufferedReader"%>
 <%@page import="com.sip.dmesmobile.utilities.Utilities"%>
 <%@page import="co.sip.dmesmobile.entitys.ScPerson"%>
 <%@page import="controller.ValidateSesion"%>
@@ -15,6 +19,7 @@ try
     ScUsers user = null;
     ValidateSesion controller = new ValidateSesion();
     user = (ScUsers) session.getAttribute("user");
+    
     if(user != null)
         {
             ScPerson person = controller.findPersonById(user.getIdPerson().getIdPerson());

@@ -137,4 +137,36 @@ function checkCookie(nameCookie)
     }
 }
 
+function getOrderNumber(idValue, creationDate, prefix)
+{
+    creationDate = creationDate.replace(/ /g, "");
+    creationDate = creationDate.replace(/-/g, "");
+    creationDate = creationDate.replace(/:/g, "");
+    var position = creationDate.indexOf('.');
+    creationDate = creationDate.substring(0, position-1);
+    return prefix+creationDate+idValue;
+}
 
+function getDate(creationDate)
+{
+    creationDate = creationDate.substring(0, creationDate.length-2);
+    return creationDate;
+}
+
+
+function removeAccent(value)
+{
+    value = value.replace(/á/g, "a");
+    value = value.replace(/é/g, "e");
+    value = value.replace(/í/g, "i");
+    value = value.replace(/ó/g, "o");
+    value = value.replace(/ú/g, "u");
+    value = value.replace(/Á/g, "A");
+    value = value.replace(/É/g, "E");
+    value = value.replace(/Í/g, "I");
+    value = value.replace(/Ó/g, "O");
+    value = value.replace(/Ú/g, "U");
+    value = value.replace(/ñ/g, "n");
+    value = value.replace(/Ñ/g, "N");
+    return value;
+}

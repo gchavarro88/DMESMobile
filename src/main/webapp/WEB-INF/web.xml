@@ -10,7 +10,10 @@
         <param-name>log4jConfigLocation</param-name>
         <param-value>/WEB-INF/log4j.properties</param-value>
     </context-param>
-    
+    <servlet>
+        <servlet-name>DynamicImageServlet</servlet-name>
+        <servlet-class>com.sip.dmesmobile.utilities.DynamicImageServlet</servlet-class>
+    </servlet>
     <welcome-file-list>
         <welcome-file>Login.html</welcome-file>
     </welcome-file-list>
