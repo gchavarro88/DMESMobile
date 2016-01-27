@@ -203,6 +203,16 @@ $(document).ready(function ()
                 });
             });
     
+    function getPerson()
+    {
+        return person_g;
+
+    }
+    
+    function getEmployee()
+    {
+        return employee_g;
+    }
 });
 
 

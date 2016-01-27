@@ -48,48 +48,36 @@ $(document).ready(function ()
                             $newElementList.appendTo("#bodyTableOrders");
                             $("#bodyTableOrders").trigger("refresh");
                         }
-                        $("#tableOrders").find("tr:eq(1)").remove();                        
+                        
                         $("#tableOrders").show(2000, "swing", function()
                         {
-                            addInfoMessage("Información Exitosa", "Los datos de producción fueron cargados exitosamente", 5);
+                            window.parent.addInfoMessage("Información Exitosa", "Los datos de producción fueron cargados exitosamente", 5);
                         });
                         $("#tableOrders").trigger("create");
                     }
                     else if (data.message === null )
                     {
-                        addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
                         var urlLoginPage = "Login.html";
                         $(location).attr('href', urlLoginPage);
                         $.unblockUI();
                     }
                     else 
                     {
-                        addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 5);
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 5);
                         $.unblockUI();
                     }    
+                    $("#tableOrders").find("tr:eq(1)").remove();                        
                     $.unblockUI();
                 })
                 .fail(function (data, status)
                 {
-                    addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                    window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
                     var urlLoginPage = "Login.html";
                     $(location).attr('href', urlLoginPage);
                     $.unblockUI();
-                });
+                });                
     }
     
     
-    
-    
-    $("#table-carr").append("<tr>"+
-                            "<th>7</th>"+
-                            "<td><a href='http://en.wikipedia.org/wiki/The_Graduate' data-rel='external'>The Graduate</a></td>"+
-                            "<td>1967</td>"+
-                            "<td>91%</td>"+
-                            "<td>122</td>"+
-                            "</tr>");
-    
-    
-    
-    
-});
+});    

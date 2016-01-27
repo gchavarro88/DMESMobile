@@ -22,3 +22,20 @@ and open the template in the editor.
     font-size: 14px;
     
 }
+
+
+.titleMainPage
+{
+    vertical-align: central;
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-top: 7px;
+    color: #FF9D1F;
+} 
+
+.labelText
+{
+    color:#44FFEC;
+}

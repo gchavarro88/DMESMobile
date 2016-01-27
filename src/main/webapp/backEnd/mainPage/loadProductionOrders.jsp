@@ -23,7 +23,16 @@
         if(idMachine > 0)
         {
             productionOrders = controller.findCurrentProductionOrders(idMachine);
-            out.print(Utilities.fromArrayToJSON(productionOrders, productionOrders.get(0).getClass().getCanonicalName(),"listProductionOrders"));
+            if(!productionOrders.isEmpty())
+            {
+                out.print(Utilities.fromArrayToJSON(productionOrders, productionOrders.get(0)
+                        .getClass().getCanonicalName(),"listProductionOrders"));
+            }
+            else
+            {
+                out.print(Utilities.messageJSON("No hay programadas ordenes de producción para hoy"));
+            }
+            
         }
         else
         {
