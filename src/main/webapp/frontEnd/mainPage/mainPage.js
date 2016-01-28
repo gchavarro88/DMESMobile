@@ -203,6 +203,10 @@ $(document).ready(function ()
                 });
             });
     
+    
+});
+
+
     function getPerson()
     {
         return person_g;
@@ -213,6 +217,3 @@ $(document).ready(function ()
     {
         return employee_g;
     }
-});
-
-
