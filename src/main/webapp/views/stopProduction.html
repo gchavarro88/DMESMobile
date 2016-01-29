@@ -22,22 +22,69 @@
         <div>
             <div data-url="pageStop" data-role="page" class="pageStop" data-theme="b" 
                  id="panel-responsive-page2" data-title=".:FATCON - Manager:.">
-                <div align="center" style="vertical-align: middle;">
+                <div  style="vertical-align: middle;">
                     <div data-role="header" style="height: 50px; " data-theme="b">
-                        <div class="titleMainPage" >Paro de Fábrica</div>
+                        
                         
                     </div><!-- /header -->
-                    <div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b">
-                        <center>
-                            <p class="labelText" style="font-size: 20px; font-weight: bold;" >
-                                Datos del Operario
-                            </p>
-                        </center>
-                        <label class="labelText">Nombre:</label>
-                        <label id="nameUser"  style="color: #FFF;"></label>
-                        </br>
-                        <label class="labelText">Cargo:</label>
-                        <label id="positionUser" style="color: #FFF;"></label>
+                    <div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b"
+                          >
+                        
+                        
+                            <center>
+                                <div >
+                                <p class="labelText" style="font-size: 20px; font-weight: bold; " >
+                                    Datos del Operario
+                                </p>
+                                <br>
+                            <table style="border: solid 0px; width: 70%;">
+                                <tr >
+                                    <th style="text-align: left; padding-right: 10px;">
+                                        <label class="labelText" for="nameUser">*Nombre:</label>
+                                    </th>
+                                    <th style="text-align: right;" >
+                                        <label id="nameUser"  style="color: #FFF;"></label>
+                                    </th>
+                                </tr>
+                                <tr style="height: 20px;">
+                                    <th colspan="2"></th>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: left; padding-right: 10px;">
+                                        <label class="labelText" for="positionUser">*Cargo:</label>
+                                    </th>
+                                    <th style="text-align: right;">
+                                        <label id="positionUser" style="color: #FFF;"></label>
+                                    </th>
+                                </tr>
+                                <tr >
+                                    <th style="text-align: left; padding-right: 10px;">
+                                        <label class="labelText" for="descriptionStop">*Descripción</label>
+                                    </th>
+                                    <th style="text-align: right;" >
+                                        <textarea id="descriptionStop"  style="height: 200px;"
+                                                        placeholder="Ingrese una descripción del motivo del Paro" rows="30" 
+                                                  ></textarea>
+                                    </th>
+                                </tr>
+                                <tr style="height: 20px;">
+                                    <th colspan="2">
+                                        <button id="btnManteinance" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px;" disabled="disabled">
+                                            Departamento de Mantenimiento
+                                        </button>
+                                        <button id="btnProduction" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-left" style="height: 80px;" disabled="disabled">
+                                            Departamento de Producción
+                                        </button>
+                                    </th>
+                                </tr>
+                                <tr style="height: 20px;">
+                                    <th colspan="2" style="color: #FFF; font-size: 12px;">
+                                        <span id="lbld">Los campos marcados con * son obligatorios</span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                            </center>
                         </br></br>
                         
                         
