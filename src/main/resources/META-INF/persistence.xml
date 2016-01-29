@@ -15,6 +15,7 @@
     <class>co.sip.dmesmobile.entitys.ScDocuments</class>
     <class>co.sip.dmesmobile.entitys.ScEmployee</class>
     <class>co.sip.dmesmobile.entitys.ScFactoryLocation</class>
+    <class>co.sip.dmesmobile.entitys.ScGroup</class>
     <class>co.sip.dmesmobile.entitys.ScInput</class>
     <class>co.sip.dmesmobile.entitys.ScInputDimension</class>
     <class>co.sip.dmesmobile.entitys.ScInputDocuments</class>
@@ -24,7 +25,6 @@
     <class>co.sip.dmesmobile.entitys.ScInputSpecifications</class>
     <class>co.sip.dmesmobile.entitys.ScInputStock</class>
     <class>co.sip.dmesmobile.entitys.ScLocation</class>
-    <class>co.sip.dmesmobile.entitys.ScMachine</class>
     <class>co.sip.dmesmobile.entitys.ScMachineAttached</class>
     <class>co.sip.dmesmobile.entitys.ScMachineConditions</class>
     <class>co.sip.dmesmobile.entitys.ScMachineDocument</class>
@@ -41,6 +41,7 @@
     <class>co.sip.dmesmobile.entitys.ScModulePermission</class>
     <class>co.sip.dmesmobile.entitys.ScModulePermissionByRole</class>
     <class>co.sip.dmesmobile.entitys.ScMoney</class>
+    <class>co.sip.dmesmobile.entitys.ScNotification</class>
     <class>co.sip.dmesmobile.entitys.ScOperatingConditions</class>
     <class>co.sip.dmesmobile.entitys.ScPackingUnit</class>
     <class>co.sip.dmesmobile.entitys.ScPartner</class>
@@ -49,6 +50,7 @@
     <class>co.sip.dmesmobile.entitys.ScPersonDocumentationAttached</class>
     <class>co.sip.dmesmobile.entitys.ScPersonObservations</class>
     <class>co.sip.dmesmobile.entitys.ScPersonSpecifications</class>
+    <class>co.sip.dmesmobile.entitys.ScPersonByGroup</class>
     <class>co.sip.dmesmobile.entitys.ScPhones</class>
     <class>co.sip.dmesmobile.entitys.ScPhoto</class>
     <class>co.sip.dmesmobile.entitys.ScPriority</class>
@@ -67,9 +69,9 @@
     <class>co.sip.dmesmobile.entitys.ScReplacementDocuments</class>
     <class>co.sip.dmesmobile.entitys.ScRoles</class>
     <class>co.sip.dmesmobile.entitys.ScServicesOrProducts</class>
-    <class>co.sip.dmesmobile.entitys.ScStopMachine</class>
     <class>co.sip.dmesmobile.entitys.ScStore</class>
     <class>co.sip.dmesmobile.entitys.ScStoreOrder</class>
+    <class>co.sip.dmesmobile.entitys.ScStopMachine</class>
     <class>co.sip.dmesmobile.entitys.ScStoreOrderItem</class>
     <class>co.sip.dmesmobile.entitys.ScStoreOrderState</class>
     <class>co.sip.dmesmobile.entitys.ScStoreRequisition</class>
@@ -85,6 +87,7 @@
     <class>co.sip.dmesmobile.entitys.ScUsers</class>
     <class>co.sip.dmesmobile.entitys.ScWorkExperience</class>
     <class>co.sip.dmesmobile.entitys.ScWorkforce</class>
+    <class>co.sip.dmesmobile.entitys.ScMachine</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

@@ -44,6 +44,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 public class ScStopMachine implements Serializable
 {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "state")
+    private short state;
+    @Size(max = 100)
+    @Column(name = "password")
+    private String password;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(generator = "dmes.sqscstopmachine")
@@ -51,27 +58,27 @@ public class ScStopMachine implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_stop_machine")
-    public Long idStopMachine;
+    private Long idStopMachine;
     @Basic(optional = false)
     @NotNull
     @Column(name = "creation_date")
     @Temporal(TemporalType.TIMESTAMP)
-    public Date creationDate;
+    private Date creationDate;
     @Size(max = 400)
     @Column(name = "reason")
-    public String reason;
+    private String reason;
     @Basic(optional = false)
     @NotNull
     @Column(name = "duration_estimate")
-    public long durationEstimate;
+    private long durationEstimate;
     @Column(name = "end_date")
     @Temporal(TemporalType.TIMESTAMP)
-    public Date endDate;
+    private Date endDate;
     @Column(name = "duration_real")
-    public Long durationReal;
+    private Long durationReal;
     @JoinColumn(name = "id_maintenance", referencedColumnName = "id_maintenance")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    public OtMaintenance idMaintenance;
+    private OtMaintenance idMaintenance;
 
     public ScStopMachine()
     {
@@ -187,6 +194,26 @@ public class ScStopMachine implements Serializable
     public String toString()
     {
         return "com.sip.dmes.entitys.ScStopMachine[ idStopMachine=" + idStopMachine + " ]";
+    }
+
+    public short getState()
+    {
+        return state;
+    }
+
+    public void setState(short state)
+    {
+        this.state = state;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
     
 }

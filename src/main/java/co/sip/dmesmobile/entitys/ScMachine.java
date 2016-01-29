@@ -31,8 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "sc_machine", schema = "dmes")
 @NamedQueries(
 {
-    @NamedQuery(name = "ScMachine.findAll", query = "SELECT s FROM ScMachine s ORDER BY s.idMachine"),
-    @NamedQuery(name = "ScMachine.findById", query = "SELECT s FROM ScMachine s WHERE s.idMachine = :idMachine")
+    @NamedQuery(name = "ScMachine.findAll", query = "SELECT s FROM ScMachine s")
     
 })
 public class ScMachine implements Serializable
@@ -44,69 +43,72 @@ public class ScMachine implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_machine")
-    public Long idMachine;
+    private Long idMachine;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "name")
-    public String name;
+    private String name;
     @Basic(optional = false)
     @NotNull
     @Column(name = "hour_value")
-    public Double hourValue;
+    private Double hourValue;
     @Size(max = 400)
     @Column(name = "description")
-    public String description;
+    private String description;
     @Column(name = "useful_life")
-    public Long usefulLife;
+    private Long usefulLife;
     @Size(max = 200)
     @Column(name = "mark")
-    public String mark;
+    private String mark;
     @Size(max = 200)
     @Column(name = "serie")
-    public String serie;
+    private String serie;
     @Size(max = 200)
     @Column(name = "type")
-    public String type;
+    private String type;
     @Size(max = 200)
     @Column(name = "clasification")
-    public String clasification;
+    private String clasification;
     @Column(name = "path_picture")
-    public String pathPicture;
+    private String pathPicture;
+    
+    @Column(name = "id_state")
+    private String idState;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    public List<ScMachineAttached> scMachineAttachedList;
+    private List<ScMachineAttached> scMachineAttachedList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    public List<ScMachineDocument> scMachineDocumentList;
+    private List<ScMachineDocument> scMachineDocumentList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    public List<ScMachineConditions> scMachineConditionsList;
+    private List<ScMachineConditions> scMachineConditionsList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    public List<ScMachinePart> scMachinePartList;
+    private List<ScMachinePart> scMachinePartList;
     
     @JoinColumn(name = "id_time", referencedColumnName = "id_time")
     @ManyToOne(optional = false)
-    public ScTime idTime;
+    private ScTime idTime;
     @JoinColumn(name = "id_priority", referencedColumnName = "id_priority")
     @ManyToOne(optional = false)
-    public ScPriority idPriority;
+    private ScPriority idPriority;
     @JoinColumn(name = "id_money", referencedColumnName = "id_money")
     @ManyToOne(optional = false)
-    public ScMoney idMoney;
+    private ScMoney idMoney;
     @JoinColumn(name = "id_dimension", referencedColumnName = "id_input_dimension")
     @ManyToOne(optional = false)
-    public ScInputDimension idDimension;
+    private ScInputDimension idDimension;
     @JoinColumn(name = "id_cost_center", referencedColumnName = "id_cost_center")
     @ManyToOne(optional = false)
-    public ScCostCenter idCostCenter;
+    private ScCostCenter idCostCenter;
     @JoinColumn(name = "id_partner", referencedColumnName = "id_partner")
     @ManyToOne(optional = false)
-    public ScPartner idPartner;
+    private ScPartner idPartner;
     @JoinColumn(name = "id_location", referencedColumnName = "id_factory_location")
     @ManyToOne(optional = false)
-    public ScFactoryLocation factoryLocation;
+    private ScFactoryLocation factoryLocation;
     
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -158,20 +160,15 @@ public class ScMachine implements Serializable
         return true;
     }
 
+   
+
+    
+
     @Override
     public String toString()
     {
-        return "{" + "\"idMachine\":\"" + idMachine + "\",\"name\":\"" + name +
-                "\",\"hourValue\":\"" + hourValue + "\",\"description\":\"" + description +
-                "\",\"usefulLife\":\"" + usefulLife + "\",\"mark\":\"" + mark + "\",\"serie\":\"" +
-                serie + "\",\"type\":\"" + type + "\",\"clasification\":\"" + clasification +
-                "\",\"pathPicture\":\"" + pathPicture + "\",\"idTime\":\"" + idTime.getAcronym() +
-                "\",\"idPriority\":\"" + idPriority.getName() + "\",\"idMoney\":\"" + idMoney.getAcronym() +
-                "\",\"idDimension\":\"" + idDimension + "\",\"idCostCenter\":\"" + idCostCenter.getCostCenter() +
-                "\",\"idPartner\":\"" + idPartner.getCompanyName() + "\",\"factoryLocation\":\"" +
-                factoryLocation.getDescription() + "\"}";
+        return idMachine.toString()+","+name;
     }
-
 
     
     
@@ -179,7 +176,7 @@ public class ScMachine implements Serializable
     {
         return idMachine;
     }
-    
+
     public void setIdMachine(Long idMachine)
     {
         this.idMachine = idMachine;
@@ -388,6 +385,16 @@ public class ScMachine implements Serializable
     public void setScMachinePartList(List<ScMachinePart> scMachinePartList)
     {
         this.scMachinePartList = scMachinePartList;
+    }
+
+    public String getIdState()
+    {
+        return idState;
+    }
+
+    public void setIdState(String idState)
+    {
+        this.idState = idState;
     }
 
     
