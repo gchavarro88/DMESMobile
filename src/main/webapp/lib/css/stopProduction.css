@@ -39,3 +39,19 @@ and open the template in the editor.
 {
     color:#44FFEC;
 }
+
+
+.titleMessage
+{
+    padding-left: 15px;
+    padding-right:15px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.contentMessage
+{
+    padding-left: 15px;
+    padding-right:15px;
+    font-size: 32px;
+}

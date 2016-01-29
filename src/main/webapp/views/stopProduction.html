@@ -20,6 +20,59 @@
     </head>
     <body>
         <div>
+            
+            <!--            Codigo de popup de maquinas-->
+            <div data-role="popup" id="promptProductionList" data-overlay-theme="a" data-theme="b" 
+                 data-dismissible="false" data-transition="flip" style="width:100%; 
+                 max-height:60%;">
+                <div data-role="header" data-theme="a">
+                    <center>
+                        <p id="titlePromptProduction" class="titleMessage">        
+                        </p>
+                    </center>
+                    </br>
+                </div>
+                <div role="main" class="ui-content" > 
+                    <center>
+                        <p id="contentPromptProduction" class="contentMessage"></p>     
+                        <ul data-role="listview" id="listProductionSelect" data-inset="true"
+                            data-filter-theme="b">
+                            <li data-icon='gear'> <a href='#'><span class='contentMessage'>ListTest
+                                    </span></a></li>
+
+                        </ul>
+                    </center>
+
+                </div>
+            </div>
+            <!--            fin del Codigo de popup de maquinas-->
+            <!--            Codigo de popup de maquinas-->
+            <div data-role="popup" id="promptMaintenanceList" data-overlay-theme="a" data-theme="b" 
+                 data-dismissible="false" data-transition="flip" style="width:100%; 
+                 max-height:60%;">
+                <div data-role="header" data-theme="a">
+                    <center>
+                        <p id="titlePromptMaintenance" class="titleMessage">        
+                        </p>
+                    </center>
+                    </br>
+                </div>
+                <div role="main" class="ui-content" > 
+                    <center>
+                        <p id="contentPromptMaintenance" class="contentMessage"></p>     
+                        <ul data-role="listview" id="listMaintenanceSelect" data-inset="true"
+                            data-filter-theme="b">
+                            <li data-icon='gear'> <a href='#'><span class='contentMessage'>ListTest
+                                    </span></a></li>
+
+                        </ul>
+                    </center>
+
+                </div>
+            </div>
+            <!--            fin del Codigo de popup de maquinas-->
+            
+            
             <div data-url="pageStop" data-role="page" class="pageStop" data-theme="b" 
                  id="panel-responsive-page2" data-title=".:FATCON - Manager:.">
                 <div  style="vertical-align: middle;">
