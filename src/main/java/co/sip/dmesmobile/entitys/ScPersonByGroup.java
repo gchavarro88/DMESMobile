@@ -42,10 +42,10 @@ public class ScPersonByGroup implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_person_by_group")
-    private Long idPersonByGroup;
+    public Long idPersonByGroup;
     @JoinColumn(name = "id_group", referencedColumnName = "id_group")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private ScGroup idGroup;
+    public ScGroup idGroup;
 
     public ScPersonByGroup()
     {

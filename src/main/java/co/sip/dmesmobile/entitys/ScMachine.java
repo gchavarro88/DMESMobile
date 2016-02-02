@@ -43,72 +43,72 @@ public class ScMachine implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_machine")
-    private Long idMachine;
+    public Long idMachine;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "name")
-    private String name;
+    public String name;
     @Basic(optional = false)
     @NotNull
     @Column(name = "hour_value")
-    private Double hourValue;
+    public Double hourValue;
     @Size(max = 400)
     @Column(name = "description")
-    private String description;
+    public String description;
     @Column(name = "useful_life")
-    private Long usefulLife;
+    public Long usefulLife;
     @Size(max = 200)
     @Column(name = "mark")
-    private String mark;
+    public String mark;
     @Size(max = 200)
     @Column(name = "serie")
-    private String serie;
+    public String serie;
     @Size(max = 200)
     @Column(name = "type")
-    private String type;
+    public String type;
     @Size(max = 200)
     @Column(name = "clasification")
-    private String clasification;
+    public String clasification;
     @Column(name = "path_picture")
-    private String pathPicture;
+    public String pathPicture;
     
     @Column(name = "id_state")
-    private String idState;
+    public String idState;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    private List<ScMachineAttached> scMachineAttachedList;
+    public List<ScMachineAttached> scMachineAttachedList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    private List<ScMachineDocument> scMachineDocumentList;
+    public List<ScMachineDocument> scMachineDocumentList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    private List<ScMachineConditions> scMachineConditionsList;
+    public List<ScMachineConditions> scMachineConditionsList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMachine", fetch = FetchType.EAGER)
-    private List<ScMachinePart> scMachinePartList;
+    public List<ScMachinePart> scMachinePartList;
     
     @JoinColumn(name = "id_time", referencedColumnName = "id_time")
     @ManyToOne(optional = false)
-    private ScTime idTime;
+    public ScTime idTime;
     @JoinColumn(name = "id_priority", referencedColumnName = "id_priority")
     @ManyToOne(optional = false)
-    private ScPriority idPriority;
+    public ScPriority idPriority;
     @JoinColumn(name = "id_money", referencedColumnName = "id_money")
     @ManyToOne(optional = false)
-    private ScMoney idMoney;
+    public ScMoney idMoney;
     @JoinColumn(name = "id_dimension", referencedColumnName = "id_input_dimension")
     @ManyToOne(optional = false)
-    private ScInputDimension idDimension;
+    public ScInputDimension idDimension;
     @JoinColumn(name = "id_cost_center", referencedColumnName = "id_cost_center")
     @ManyToOne(optional = false)
-    private ScCostCenter idCostCenter;
+    public ScCostCenter idCostCenter;
     @JoinColumn(name = "id_partner", referencedColumnName = "id_partner")
     @ManyToOne(optional = false)
-    private ScPartner idPartner;
+    public ScPartner idPartner;
     @JoinColumn(name = "id_location", referencedColumnName = "id_factory_location")
     @ManyToOne(optional = false)
-    private ScFactoryLocation factoryLocation;
+    public ScFactoryLocation factoryLocation;
     
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

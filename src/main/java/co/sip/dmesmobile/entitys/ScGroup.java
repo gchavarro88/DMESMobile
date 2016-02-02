@@ -40,23 +40,24 @@ import javax.xml.bind.annotation.XmlTransient;
 })
 public class ScGroup implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(generator = "dmes.sqscgroup")
     @SequenceGenerator(name = "dmes.sqscgroup", sequenceName = "dmes.sqscgroup", allocationSize = 1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_group")
-    private Long idGroup;
+    public Long idGroup;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "name")
-    private String name;
+    public String name;
     @Size(max = 200)
     @Column(name = "description")
-    private String description;
-    
+    public String description;
+    @Column(name = "type")
+    public String type;
 
     public ScGroup()
     {
@@ -103,6 +104,18 @@ public class ScGroup implements Serializable
         this.description = description;
     }
 
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
+    }
+
+    
+    
     @Override
     public int hashCode()
     {

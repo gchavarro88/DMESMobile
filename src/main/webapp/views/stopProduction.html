@@ -20,130 +20,134 @@
     </head>
     <body>
         <div>
-            
-            <!--            Codigo de popup de maquinas-->
-            <div data-role="popup" id="promptProductionList" data-overlay-theme="a" data-theme="b" 
-                 data-dismissible="false" data-transition="flip" style="width:100%; 
-                 max-height:60%;">
-                <div data-role="header" data-theme="a">
-                    <center>
-                        <p id="titlePromptProduction" class="titleMessage">        
-                        </p>
-                    </center>
-                    </br>
-                </div>
-                <div role="main" class="ui-content" > 
-                    <center>
-                        <p id="contentPromptProduction" class="contentMessage"></p>     
-                        <ul data-role="listview" id="listProductionSelect" data-inset="true"
-                            data-filter-theme="b">
-                            <li data-icon='gear'> <a href='#'><span class='contentMessage'>ListTest
-                                    </span></a></li>
 
-                        </ul>
-                    </center>
 
-                </div>
-            </div>
-            <!--            fin del Codigo de popup de maquinas-->
-            <!--            Codigo de popup de maquinas-->
-            <div data-role="popup" id="promptMaintenanceList" data-overlay-theme="a" data-theme="b" 
-                 data-dismissible="false" data-transition="flip" style="width:100%; 
-                 max-height:60%;">
-                <div data-role="header" data-theme="a">
-                    <center>
-                        <p id="titlePromptMaintenance" class="titleMessage">        
-                        </p>
-                    </center>
-                    </br>
-                </div>
-                <div role="main" class="ui-content" > 
-                    <center>
-                        <p id="contentPromptMaintenance" class="contentMessage"></p>     
-                        <ul data-role="listview" id="listMaintenanceSelect" data-inset="true"
-                            data-filter-theme="b">
-                            <li data-icon='gear'> <a href='#'><span class='contentMessage'>ListTest
-                                    </span></a></li>
 
-                        </ul>
-                    </center>
 
-                </div>
-            </div>
-            <!--            fin del Codigo de popup de maquinas-->
-            
-            
             <div data-url="pageStop" data-role="page" class="pageStop" data-theme="b" 
                  id="panel-responsive-page2" data-title=".:FATCON - Manager:.">
                 <div  style="vertical-align: middle;">
                     <div data-role="header" style="height: 50px; " data-theme="b">
-                        
-                        
+
+
                     </div><!-- /header -->
-                    <div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b"
-                          >
-                        
-                        
+                    <!--            Codigo de popup de maquinas-->
+                    <div data-role="popup" id="promptProductionList" data-overlay-theme="a" data-theme="b" 
+                         data-dismissible="true" data-transition="flip" style="width:100%; 
+                         max-height:60%;">
+                        <div data-role="header" data-theme="a">
                             <center>
-                                <div >
+                                <p id="titlePromptProduction" class="titleMessage">        
+                                </p>
+                            </center>
+                            </br>
+                        </div>
+                        <div role="main" class="ui-content" > 
+                            <center>
+                                <p id="contentPromptProduction" class="contentMessage"></p>     
+                                <ul data-role="listview" id="listProductionSelect" data-inset="true"
+                                    data-filter-theme="b">
+                                    <li data-icon='gear'> <a href='#'><span class='contentMessage'>ListTest
+                                            </span></a></li>
+
+                                </ul>
+                            </center>
+
+                        </div>
+                    </div>
+                    <!--            fin del Codigo de popup de maquinas-->
+                    <!--            Codigo de popup de maquinas-->
+                    <div data-role="popup" id="promptMaintenanceList" data-overlay-theme="a" data-theme="b" 
+                         data-dismissible="true" data-transition="flip" style="width:100%; 
+                         max-height:60%;">
+                        <div data-role="header" data-theme="a">
+                            <center>
+                                <p id="titlePromptMaintenance" class="titleMessage">        
+                                </p>
+                            </center>
+                            </br>
+                        </div>
+                        <div role="main" class="ui-content" > 
+                            <center>
+                                <p id="contentPromptMaintenance" class="contentMessage"></p>     
+                                <ul data-role="listview" id="listMaintenanceSelect" data-inset="true"
+                                    data-filter-theme="b">
+                                    <li data-icon='gear'> <a href='#'><span class='contentMessage'>ListTest
+                                            </span></a></li>
+
+                                </ul>
+                            </center>
+
+                        </div>
+                    </div>
+                    <!--            fin del Codigo de popup de maquinas-->
+
+
+
+                    <div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b"
+                         >
+
+
+                        <center>
+                            <div >
                                 <p class="labelText" style="font-size: 20px; font-weight: bold; " >
                                     Datos del Operario
                                 </p>
                                 <br>
-                            <table style="border: solid 0px; width: 70%;">
-                                <tr >
-                                    <th style="text-align: left; padding-right: 10px;">
-                                        <label class="labelText" for="nameUser">*Nombre:</label>
-                                    </th>
-                                    <th style="text-align: right;" >
-                                        <label id="nameUser"  style="color: #FFF;"></label>
-                                    </th>
-                                </tr>
-                                <tr style="height: 20px;">
-                                    <th colspan="2"></th>
-                                </tr>
-                                <tr>
-                                    <th style="text-align: left; padding-right: 10px;">
-                                        <label class="labelText" for="positionUser">*Cargo:</label>
-                                    </th>
-                                    <th style="text-align: right;">
-                                        <label id="positionUser" style="color: #FFF;"></label>
-                                    </th>
-                                </tr>
-                                <tr >
-                                    <th style="text-align: left; padding-right: 10px;">
-                                        <label class="labelText" for="descriptionStop">*Descripción</label>
-                                    </th>
-                                    <th style="text-align: right;" >
-                                        <textarea id="descriptionStop"  style="height: 200px;"
-                                                        placeholder="Ingrese una descripción del motivo del Paro" rows="30" 
-                                                  ></textarea>
-                                    </th>
-                                </tr>
-                                <tr style="height: 20px;">
-                                    <th colspan="2">
-                                        <button id="btnManteinance" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px;" disabled="disabled">
-                                            Departamento de Mantenimiento
-                                        </button>
-                                        <button id="btnProduction" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-left" style="height: 80px;" disabled="disabled">
-                                            Departamento de Producción
-                                        </button>
-                                    </th>
-                                </tr>
-                                <tr style="height: 20px;">
-                                    <th colspan="2" style="color: #FFF; font-size: 12px;">
-                                        <span id="lbld">Los campos marcados con * son obligatorios</span>
-                                    </th>
-                                </tr>
-                            </table>
-                        </div>
-                            </center>
+                                <table style="border: solid 0px; width: 70%;">
+                                    <tr >
+                                        <th style="text-align: left; padding-right: 10px;">
+                                            <label class="labelText" for="nameUser">*Nombre:</label>
+                                        </th>
+                                        <th style="text-align: right;" >
+                                            <label id="nameUser"  style="color: #FFF;"></label>
+                                        </th>
+                                    </tr>
+                                    <tr style="height: 20px;">
+                                        <th colspan="2"></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align: left; padding-right: 10px;">
+                                            <label class="labelText" for="positionUser">*Cargo:</label>
+                                        </th>
+                                        <th style="text-align: right;">
+                                            <label id="positionUser" style="color: #FFF;"></label>
+                                        </th>
+                                    </tr>
+                                    <tr >
+                                        <th style="text-align: left; padding-right: 10px;">
+                                            <label class="labelText" for="descriptionStop">*Descripción:</label>
+                                        </th>
+                                        <th style="text-align: right;" >
+                                            <textarea id="descriptionStop"  style="height: 200px;"
+                                                      placeholder="Ingrese una descripción del motivo del Paro" rows="30" 
+                                                      ></textarea>
+                                        </th>
+                                    </tr>
+                                    <tr style="height: 20px;">
+                                        <th colspan="2">
+                                            <button id="btnManteinance" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px;" disabled="disabled">
+                                                Departamento de Mantenimiento
+                                            </button>
+                                            <button id="btnProduction" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-left" style="height: 80px;" disabled="disabled">
+                                                Departamento de Producción
+                                            </button>
+                                        </th>
+                                    </tr>
+                                    <tr style="height: 20px;">
+                                        <th colspan="2" style="color: #FFF; font-size: 12px;">
+                                            <span id="lbld">Los campos marcados con * son obligatorios</span>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </center>
                         </br></br>
-                        
-                        
+
+
                     </div><!-- /content -->
-                    
-               
+
+
                 </div>
             </div>
         </div>

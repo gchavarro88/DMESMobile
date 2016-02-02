@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -253,6 +254,28 @@ public class Utilities
     }
     
     
-    
+    public static String generatePassword(int lenght)
+    {
+        String result = "";
+        String mayusculas = "abcdefghijklmnopqrstuvxyz";
+        String numeros = "1234567890";
+        
+        for(int i=0; i< lenght; i++)
+        {
+            if(i%3==0)
+            {
+                result+= new Random().nextInt(lenght);
+            }
+            else if(i%2==0)
+            {
+                result+= mayusculas.charAt(new Random().nextInt(mayusculas.length()-1))+"".toUpperCase();
+            }
+            else
+            {
+                result+= mayusculas.charAt(new Random().nextInt(mayusculas.length()-1));
+            }
+        }
+        return result;
+    }
     
 }

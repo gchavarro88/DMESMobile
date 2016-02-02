@@ -43,16 +43,20 @@ public class ScNotification implements Serializable
     @SequenceGenerator(name = "dmes.sqscnotification", sequenceName = "dmes.sqscnotification", allocationSize = 1)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_stop_machine")
-    private Long idStopMachine;
+    @Column(name = "id_notification")
+    public Long idNotification;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "password")
-    private String password;
+    public String password;
     @JoinColumn(name = "id_group", referencedColumnName = "id_group")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private ScGroup idGroup;
+    public ScGroup idGroup;
+    @Column(name = "id_stop_machine")
+    public Long idStopMachine;
+    @Column(name = "id_machine")
+    public Long idMachine;
 
     public ScNotification()
     {
@@ -99,6 +103,28 @@ public class ScNotification implements Serializable
         this.idGroup = idGroup;
     }
 
+    public Long getIdNotification()
+    {
+        return idNotification;
+    }
+
+    public void setIdNotification(Long idNotification)
+    {
+        this.idNotification = idNotification;
+    }
+
+    public Long getIdMachine()
+    {
+        return idMachine;
+    }
+
+    public void setIdMachine(Long idMachine)
+    {
+        this.idMachine = idMachine;
+    }
+
+    
+    
     @Override
     public int hashCode()
     {

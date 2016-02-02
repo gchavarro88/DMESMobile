@@ -47,10 +47,10 @@ public class ScStopMachine implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "state")
-    private short state;
+    public short state;
     @Size(max = 100)
     @Column(name = "password")
-    private String password;
+    public String password;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(generator = "dmes.sqscstopmachine")
@@ -58,27 +58,26 @@ public class ScStopMachine implements Serializable
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_stop_machine")
-    private Long idStopMachine;
+    public Long idStopMachine;
     @Basic(optional = false)
     @NotNull
     @Column(name = "creation_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    public Date creationDate;
     @Size(max = 400)
     @Column(name = "reason")
-    private String reason;
+    public String reason;
     @Basic(optional = false)
     @NotNull
     @Column(name = "duration_estimate")
-    private long durationEstimate;
+    public long durationEstimate;
     @Column(name = "end_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    public Date endDate;
     @Column(name = "duration_real")
-    private Long durationReal;
-    @JoinColumn(name = "id_maintenance", referencedColumnName = "id_maintenance")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private OtMaintenance idMaintenance;
+    public Long durationReal;
+    @Column(name = "id_maintenance")
+    public Long idMaintenance;
 
     public ScStopMachine()
     {
@@ -155,17 +154,6 @@ public class ScStopMachine implements Serializable
     {
         this.durationReal = durationReal;
     }
-
-    public OtMaintenance getIdMaintenance()
-    {
-        return idMaintenance;
-    }
-
-    public void setIdMaintenance(OtMaintenance idMaintenance)
-    {
-        this.idMaintenance = idMaintenance;
-    }
-
     @Override
     public int hashCode()
     {
