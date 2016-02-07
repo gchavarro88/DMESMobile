@@ -8,6 +8,8 @@ var employee_g = null; //Empleado asociado al empleado de la sesion
 var client = null; //Datos del cliente
 var productionOrdersList = null;//
 //Inicio que captura todos los eventos de JQuery
+var idMachineCookie = getCookie(MACHINE_ASSOCIATED_ID);
+
 $(document).ready(function ()
 {
     validSesion();
@@ -23,7 +25,11 @@ $(document).ready(function ()
         $.ajax
                 ({
                     url: url,
-                    method: "POST"
+                    method: "POST",
+                    data:
+                            {
+                                idMachine: idMachineCookie
+                            }
                 })
                 .done(function (data, status)
                 {
@@ -45,6 +51,21 @@ $(document).ready(function ()
                         addInfoMessage("Sesión No Válida", "Debe ingresar nuevamente sus credenciales", 5);
                         var urlLoginPage = "Login.html";
                         $(location).attr('href', urlLoginPage);
+                    }
+                    else if (data.message === "NOT_SELECTED_MACHINE")
+                    {
+                        addInfoMessage("Máquina No Seleccionada", "Debe seleccionar una máquina para asignarla", 5);
+                        var urlLoginPage = "Login.html";
+                        $(location).attr('href', urlLoginPage);
+                    }
+                    else if(data.message === "MACHINE_NOT_AVAILABLE")
+                    {
+                        addInfoMessage("Máquina Bloqueada", "La Máquina se encuentra en estado de PARO, por favor comuniquese con el área encargada de atender la solicitud", 5);
+                        var urlBlockPage = "blockPage.html";
+                        setTimeout(function()
+                        {
+                            $(location).attr('href', urlBlockPage);
+                        }, 2000);
                     }
 
                     $.unblockUI();
@@ -76,6 +97,7 @@ $(document).ready(function ()
                     {
                         employee_g = data;
                         $("#positionUser").text(employee_g.position);
+                        $("#iframeMain").attr("src", "views/productionOrder.html");
                     }
                     else if (data.message === null )
                     {
@@ -217,3 +239,4 @@ $(document).ready(function ()
     {
         return employee_g;
     }
+    

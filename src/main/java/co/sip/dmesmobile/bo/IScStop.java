@@ -7,6 +7,7 @@ package co.sip.dmesmobile.bo;
 
 
 import co.sip.dmesmobile.entitys.ScGroup;
+import co.sip.dmesmobile.entitys.ScStopMachine;
 import java.util.List;
 
 /**
@@ -22,5 +23,10 @@ public interface IScStop {
     
     public int addNotificationAndStopMachine(Long idMachine, Long idGroup, String password, String reason) throws Exception;
 
+    public ScStopMachine getStopMachine(String idMachine, String state) throws Exception;
+    
+    public String loadMaintenanceOrdersByMachine(String idMachine) throws Exception;
+    
+    public String[] getListRecipients(String idGroup)throws Exception;
 }
 

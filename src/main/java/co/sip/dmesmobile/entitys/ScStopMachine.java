@@ -150,6 +150,18 @@ public class ScStopMachine implements Serializable
         return durationReal;
     }
 
+    public Long getIdMaintenance()
+    {
+        return idMaintenance;
+    }
+
+    public void setIdMaintenance(Long idMaintenance)
+    {
+        this.idMaintenance = idMaintenance;
+    }
+
+    
+    
     public void setDurationReal(Long durationReal)
     {
         this.durationReal = durationReal;

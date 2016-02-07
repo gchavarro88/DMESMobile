@@ -112,5 +112,28 @@ public class DMESConstants
     
     public static String UPDATE_TOOL = "UPDATE DMES.SC_STOCK  SET CURRENT_STOCK = (CURRENT_STOCK OPERATION) WHERE ID_STOCK = (SELECT T.ID_STOCK  FROM DMES.SC_TOOL T, DMES.SC_STOCK S\n" +
 "    WHERE T.ID_STOCK = S.ID_STOCK AND T.ID_TOOL = NUMBERID )";
-}
+    
+    public static String SUBJECT_MAIL_BLOCK_MACHINE_STOP_MAINTENANCE = "[FATCON] Paro de Máquina - Solicitud de Mantenimiento";
+    
+    public static String SUBJECT_MAIL_BLOCK_MACHINE_STOP_PRODUCTION = "[FATCON] Paro de Máquina - Solicitud de Personal de Producción";
+    
+    public static String HEADER_MESSAGE_STOP_MACHINE = "Saludos Cordiales,\n\n\n"
+            + "Se informa que ha ocurrido un error en producción,"
+            + " lo cual solicita presencia del persona de mantenimiento en la Máquina: ";
+    
+    public static String BODY_MESSAGE_STOP_MACHINE= "\n\nSe ha generado una contraseña que le permitirá ingresar al sistema, "
+            + "para dar solución y poner la máquina nuevamente en funcionamiento.\n\n\n"
+            + "Contraseña: ";
+    
+    public static String FOOTER_MESSAGE_STOP_MACHINE = "\n\nEsta notificación es generada automáticamente, por favor no responda\n\n"
+            + "Cordialmente,\n\n Fatcon Manager Suite\nhttp://www.sipingenieria.com.co";
+    
+    public static String USER_NAME_NOTIFICATION = "notification.sipingenieria@gmail.com";
+    
+    public static String PASSWORD_NOTIFICATION = "notification";
+    
+    public static String PERSONAL_NAME_NOTIFICATION = "Fatcon Notificator";
+    
+}   
+
  

@@ -136,7 +136,7 @@ public class ScPersonDao implements IScPerson
 
             Query query = entityManager.createNamedQuery("ScMachine.findById");
             query.setParameter("idMachine",idMachine);
-            result = (ScMachine) query.getResultList();
+            result = (ScMachine) query.getSingleResult();
         }
         catch (Exception e)
         {

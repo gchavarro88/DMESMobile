@@ -21,6 +21,9 @@
     Long idMachine = ((!Utilities.isEmpty(idMachineChar))?Long.parseLong(idMachineChar):-1L);
     Long idGroup = ((!Utilities.isEmpty(idGroupChar))?Long.parseLong(idGroupChar):-1L);
     String reason = request.getParameter("reason");
+    String type = request.getParameter("type");
+    String nameMachine = request.getParameter("nameMachine");
+    String valueGroup = request.getParameter("valueGroup");
     
     try
     {   
@@ -31,7 +34,7 @@
                 if(result > 0)
                 {
                     String password = Utilities.generatePassword(10);
-                    result = controller.insertNotification(idMachine, idGroup, password, reason);
+                    result = controller.insertNotification(idMachine, idGroup, password, reason, type, nameMachine, valueGroup);
                     if(result > 0)
                     {
                         out.print(Utilities.messageJSON("PARO_EXITOSO"));

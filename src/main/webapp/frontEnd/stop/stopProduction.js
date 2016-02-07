@@ -60,14 +60,14 @@ $(document).ready(function ()
                         {
                             var selection = $(this).text().trim();
                             $("#promptMaintenanceList").popup("close");
-                            stopMachine(selection, listGroups);
+                            stopMachine(selection, listGroups, "MAINTENANCE");
                             $.unblockUI();
                         });
                         $("#listProductionSelect li").on("click", function ()
                         {
                             var selection = $(this).text().trim();
                             $("#promptProductionList").popup("close");
-                            stopMachine(selection, listGroups);
+                            stopMachine(selection, listGroups, "PRODUCTION");
                             $.unblockUI();
                         });
                     }
@@ -101,7 +101,7 @@ $(document).ready(function ()
     });
 
 
-    function stopMachine(valueGroup, listGroups)
+    function stopMachine(valueGroup, listGroups, type)
     {
         var idGroup= null;
         for(var i=0; i<listGroups.listGroups.length;i++)
@@ -114,7 +114,7 @@ $(document).ready(function ()
         }
         if(idGroup !== null && idGroup > 0)
         {
-            blockMachine(idGroup);
+            blockMachine(idGroup, type, valueGroup);
         }
         else
         {
@@ -123,7 +123,7 @@ $(document).ready(function ()
         
     }
     
-    function blockMachine(idGroup)
+    function blockMachine(idGroup, type, valueGroup)
     {
         var idMachine = getCookie("idMachine");
         var reason = $("#descriptionStop").val();
@@ -137,20 +137,23 @@ $(document).ready(function ()
                     {
                         idGroup:idGroup,
                         idMachine:idMachine,
-                        reason:reason                        
+                        reason:reason,
+                        type: type,
+                        nameMachine:getCookie(MACHINE_ASSOCIATED_NAME),
+                        valueGroup:valueGroup
                     }
                 })
                 .done(function (data, status)
                 {
-                    var url = "blockPage.html";
+                    var url = "../blockPage.html";
                     data = convertStringToJSON(data);
                     if(data.message === "PARO_EXITOSO")
-                    {
+                    {   
                         window.parent.addInfoMessage(MESSAGE_TITTLE_SUCCES, MESSAGE_SUCCES, 5);
                         $.unblockUI();
                         setTimeout(function()
-                        {                    
-                            window.parent.location(url);
+                        {                      
+                            window.parent.location.href = url;
                         }, 3000);
                     }
                     else

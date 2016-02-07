@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "sc_machine", schema = "dmes")
 @NamedQueries(
 {
-    @NamedQuery(name = "ScMachine.findAll", query = "SELECT s FROM ScMachine s")
+    @NamedQuery(name = "ScMachine.findAll", query = "SELECT s FROM ScMachine s"),
+    @NamedQuery(name = "ScMachine.findById", query = "SELECT s FROM ScMachine s WHERE s.idMachine = :idMachine")
     
 })
 public class ScMachine implements Serializable

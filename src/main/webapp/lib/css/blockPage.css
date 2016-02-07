@@ -1,0 +1,69 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-ene-2016, 14:48:54
+    Author     : guschaor
+*/
+.divBody
+{
+    background-color: #FE2E2E;
+}
+
+
+.tittle
+{
+    color: #44FFEC;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.row
+{
+    font-weight: lighter;
+    //color: #44FFEC;
+    font-size: 14px;
+    
+}
+
+
+.titleMainPage
+{
+    vertical-align: central;
+    font-size: 22px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-top: 7px;
+    color: #FF9D1F;
+} 
+
+.labelText
+{
+    color:#44FFEC;
+    font-size: 26px;
+}
+
+
+.titleMessage
+{
+    padding-left: 15px;
+    padding-right:15px;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.contentMessage
+{
+    padding-left: 15px;
+    padding-right:15px;
+    font-size: 32px;
+}
+
+
+.ui-filter-inset 
+{
+    margin-top: 0;
+}

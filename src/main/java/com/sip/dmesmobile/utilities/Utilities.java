@@ -278,4 +278,20 @@ public class Utilities
         return result;
     }
     
+    public static String  sendMail(String[] recipients, String[] bccRecipients, String subject, 
+            String message, final String userName, final String password, String namePersonal)        
+    {
+        String result = ""; 
+        try
+        {
+            new MailUtil().sendMail(recipients, bccRecipients, subject, message, userName, password, namePersonal);
+            result = "Se envió la notificación exitosamente";
+        }
+        catch (Exception e)
+        {
+            result = "Ocurrió un error durante el envío de la notificación";
+        }
+        return result;
+    }
+    
 }

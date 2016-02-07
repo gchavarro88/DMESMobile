@@ -8,7 +8,7 @@ package co.sip.dmesmobile.bs;
 
 
 import co.sip.dmesmobile.bo.IScStop;
-import co.sip.dmesmobile.entitys.OtMaintenance;
+
 import co.sip.dmesmobile.entitys.ScGroup;
 import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScNotification;
@@ -100,12 +100,110 @@ public class ScStopDao implements IScStop
             notification.setIdMachine(idMachine);
             entityManager.persist(notification);
             entityManager.getTransaction().commit();
-            result = 1;
+            result =Integer.parseInt(notification.getIdNotification().toString());
         }
         catch (Exception e)
         {
             entityManager.getTransaction().rollback();
             log.error("Error intentando insertar una nueva notificación",e);
+            throw e;
+        }
+        return result;
+    }
+
+    @Override
+    public ScStopMachine getStopMachine(String idMachine, String state) throws Exception
+    {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        ScStopMachine result = null;
+        String stringQuery = "SELECT * FROM (SELECT sm.id_stop_machine, sm.id_maintenance, "
+                + "sm.reason, sm.state, sm.password, g.type AS type_group, ROW_NUMBER() OVER "
+                + "(ORDER BY sm.id_stop_machine DESC) AS item\n" +
+                "FROM dmes.sc_stop_machine sm, dmes.sc_notification n, dmes.sc_group g WHERE "
+                + "sm.state = "+state+" AND n.id_stop_machine = sm.id_stop_machine\n" +
+                "AND n.id_group = g.id_group\n" +
+                "AND n.id_machine = "+idMachine+") AS STOP_MACHINE WHERE item = 1";
+        Query query = entityManager.createNativeQuery(stringQuery);
+        Object object = query.getSingleResult();
+        if(object != null)
+        {
+            result = new ScStopMachine();
+            
+            result.setIdStopMachine(new Long(((Object[]) object)[0].toString())); //Extraigo el id
+            result.setReason(((Object[]) object)[2].toString()); //Extraigo la razón
+            result.setState(new Short(((Object[]) object)[3].toString()));
+            result.setPassword(((Object[]) object)[4].toString());
+            if(((Object[]) object)[1] != null)
+            {
+                result.setIdMaintenance(new Long(((Object[]) object)[1].toString()));
+            }
+            else if(((Object[]) object)[5].toString().equals("1"))
+            {
+                result.setIdMaintenance(-1L);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public String loadMaintenanceOrdersByMachine(String idMachine) throws Exception
+    {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        String result = null;
+        String stringQuery = "SELECT om.id_maintenance, om.creation_date, 'OM'||TO_CHAR( om.creation_date,"
+                + " 'YYYYMMDDHH4MISS')||om.id_maintenance as orderMaintenance,"
+                + "p.last_name||' '||p.first_name AS name, e.position, w.type_workforce \n" +
+        "FROM dmes.ot_maintenance om, dmes.sc_machine_part mp, dmes.sc_workforce w, dmes.sc_employee e, dmes.sc_person p\n" +
+        "WHERE om.id_machine_part = mp.id_machine_part AND mp.id_machine = "+idMachine+
+        "AND om.id_workforce = w.id_workforce AND w.id_employee = e.id_employee\n" +
+        "AND e.id_person = p.id_person";
+        Query query = entityManager.createNativeQuery(stringQuery);
+        List<Object> object = (List<Object>) query.getResultList();
+        if(object != null && !object.isEmpty())
+        {
+            result = "{\"orders\" :[";
+            for(Object o: object)
+            {
+                result += "{";
+                result += "\"idMaintenance\":\""+((Object[]) o)[0].toString()+"\",";
+                result += "\"creationDate\":\""+((Object[]) o)[1].toString()+"\",";
+                result += "\"idOrderMaintenance\":\""+((Object[]) o)[2].toString()+"\",";
+                result += "\"name\":\""+((Object[]) o)[3].toString()+"\",";
+                result += "\"position\":\""+((Object[]) o)[4].toString()+"\",";
+                result += "\"workforce\":\""+((Object[]) o)[5].toString()+"\"";
+                result += "},";
+            }
+            result = result.substring(0, result.length()-1);
+            result += "]}";
+        }
+        return result;
+    }
+
+    @Override
+    public String[] getListRecipients(String idGroup) throws Exception
+    {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        List<Object> objects = null;
+        String result[] = null;
+        String stringQuery = "SELECT m.mail from dmes.sc_mails m, dmes.sc_person_by_group pg \n" +
+                        "WHERE pg.id_group = "+idGroup+" AND pg.id_person = m.id_person";
+        try
+        {
+            Query query = entityManager.createNativeQuery(stringQuery);
+            objects = (List<Object>) query.getResultList();
+            if(objects != null && !objects.isEmpty())
+            {
+                result = new String[objects.size()];
+                for(int i=0; i< objects.size(); i++)
+                {
+                    result[i] = ((String) objects.get(i));
+                    
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            log.error("Error consultando la lista de correos para el grupo "+idGroup, e);
             throw e;
         }
         return result;

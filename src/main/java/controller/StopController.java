@@ -13,7 +13,9 @@ import co.sip.dmesmobile.entitys.ScEmployee;
 import co.sip.dmesmobile.entitys.ScGroup;
 import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScPerson;
+import co.sip.dmesmobile.entitys.ScStopMachine;
 import com.sip.dmesmobile.utilities.DMESConstants;
+import com.sip.dmesmobile.utilities.Utilities;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -68,17 +70,62 @@ public class StopController
        return result;
     }
     
-    public int insertNotification(Long idMachine, Long idGroup, String password, String reason) throws Exception
+    public int insertNotification(Long idMachine, Long idGroup, String password, 
+            String reason, String type, String nameMachine, String valueGroup) throws Exception
     {
         setStopDao(new ScStopDao());
         int result = -1;
         try 
         {
             result = getStopDao().addNotificationAndStopMachine(idMachine, idGroup, password, reason);
+            String[] recipients = getStopDao().getListRecipients(idGroup.toString());
+            String subject = (type.equals("MAINTENANCE")? DMESConstants.SUBJECT_MAIL_BLOCK_MACHINE_STOP_MAINTENANCE:DMESConstants.SUBJECT_MAIL_BLOCK_MACHINE_STOP_PRODUCTION);
+            subject = subject.concat(" No "+result);
+            String message = DMESConstants.HEADER_MESSAGE_STOP_MACHINE+nameMachine;
+            message = message.concat(DMESConstants.BODY_MESSAGE_STOP_MACHINE+password);
+            message = message.concat("\n\nGrupo Solicitado: "+valueGroup);
+            message = message.concat("\n\nDescripción del Paro: "+reason);
+            message = message.concat(DMESConstants.FOOTER_MESSAGE_STOP_MACHINE);
+            Utilities.sendMail(recipients, null, subject
+                    , message, DMESConstants.USER_NAME_NOTIFICATION, DMESConstants.PASSWORD_NOTIFICATION, 
+                    DMESConstants.PERSONAL_NAME_NOTIFICATION);
         }
         catch (Exception e)
         {
             log.error("Error intentando insertar una nueva notificación y un paro de máquina",e);
+            throw e;
+        }
+       return result;
+    }
+    
+    
+    public ScStopMachine getStopMachine(String idMachine, String state) throws Exception
+    {
+        setStopDao(new ScStopDao());
+        ScStopMachine result = null;
+        try 
+        {
+            result = getStopDao().getStopMachine(idMachine, state);
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando consultar un paro de máquina",e);
+            throw e;
+        }
+       return result;
+    }
+    
+    public String loadMaintenanceOrdersByMachine(String idMachine)throws Exception
+    {
+        setStopDao(new ScStopDao());
+        String result = null;
+        try 
+        {
+            result = getStopDao().loadMaintenanceOrdersByMachine(idMachine);
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando cargar las ordenes de la máquina",e);
             throw e;
         }
        return result;
@@ -95,6 +142,8 @@ public class StopController
     {
         this.stopDao = stopDao;
     }
+    
+    
     
     
 }

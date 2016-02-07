@@ -64,7 +64,7 @@ $(document).ready(function ()
                     }
                     else 
                     {
-                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 5);
+                        window.parent.addInfoMessage("Ordenes de Producción", data.message, 5);
                         $.unblockUI();
                     }    
                     $("#tableOrders").find("tr:eq(1)").remove();                        
