@@ -5,14 +5,15 @@
  */
 var stopMachine = null;
 var orders = null;
+var countDate = null;
 $(document).ready(function ()
 {
-    $( "#pnlBlockMachine" ).collapsible(
-    {
-        collapsed: false,
-        corners: false,
-        disabled: true
-    });
+//    $( "#pnlBlockMachine" ).collapsible(
+//    {
+//        collapsed: false,
+//        corners: false,
+//        disabled: true
+//    });
     $("#nroOrder").val("");
     $("#maintenancePassword").val("");
     $("#nroOrder").attr("disabled", null);
@@ -172,7 +173,7 @@ $(document).ready(function ()
         {
             if($("#maintenancePassword").val()=== stopMachine.password)
             {
-                alert("Puede iniciar con la resolución del paro",2);
+                responseStopMachine();
             }
             else
             {
@@ -186,6 +187,69 @@ $(document).ready(function ()
         }
     });
     
+    function responseStopMachine()
+    {
+        $("#maintenanceStop").fadeOut(2000, function(){
+            $("#stopSolution").fadeIn(2000);
+        });
+        
+        var currentDate = new Date();
+        var stringCurrentDate = ((currentDate.getDate()+1) < 10 ? '0' : '') + (currentDate.getDate()+1) + '/' +
+                ((currentDate.getMonth()+1) < 10 ? '0' : '') + (currentDate.getMonth()+1) + '/' +
+                currentDate.getFullYear()+' '+currentDate.getHours()+':'+currentDate.getMinutes()+':'+currentDate.getSeconds();
+        $("#requestDate").text(stringCurrentDate);
+        var hours = 0;
+        var minutes = 0;
+        var seconds = 0;
+        countDate = setInterval(function ()
+        {
+            seconds++;
+            if(seconds === 60)
+            {
+                minutes ++;
+                seconds = 0;
+            }
+            if(minutes === 60)
+            {
+                hours++;
+                minutes = 0;
+            }
+            
+            $("#responseDate").text(((hours < 10)?'0'+hours:hours)+":"+((minutes < 10)?'0'+
+                    minutes:minutes)+":"+((seconds < 10)?'0'+seconds:seconds));
+        }, 1000);
+        $("#idStopMachine").text("PM"+stopMachine.idStopMachine);
+    }
+    
+    
+    $("#btnContinueStop").on("click", function()
+    {
+         clearInterval(countDate);
+         $("#stopSolution").fadeOut(2000, function(){
+            $("#maintenanceStop").fadeIn(2000);
+        });
+    });
+    
+    $("#btnSolution").on("click", function()
+    {
+         clearInterval(countDate);
+         $("#btnSolution").prop("disabled", true);
+    });
+    
+    $(document).keyup(function ()
+    {
+        var field = $("#solution").val();
+        if (!isEmpty(field))
+        {
+            $("#btnSolution").prop("disabled", false);
+//            $("#btnContinueStop").prop("disabled", false);
+        }
+        else
+        {
+            $("#btnSolution").prop("disabled", true);
+//            $("#btnContinueStop").prop("disabled", true);
+        }
+    });
     
     function validOrderMaintenance()
     {
@@ -212,7 +276,6 @@ $(document).ready(function ()
     
     getTypeStop();
     loadMaintenanceOrders();
-    validateOrder();
    
     
 });

@@ -8,7 +8,7 @@
         <title>.:FATCON - Login:.</title>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <link rel="stylesheet" href="lib/bootstrap_3.3.6/css/bootstrap.css">         
         <link rel="stylesheet" href="lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
@@ -24,7 +24,7 @@
         <div data-role="page" id="pageBlock" class="jqm-demos ui-responsive-panel"  data-theme="b" 
              >
 
-<!--            Codigo de mensaje-->
+            <!--            Codigo de mensaje-->
             <div data-role="popup" id="messages" data-overlay-theme="a" data-theme="b" 
                  data-dismissible="true" data-transition="flip" style="width:100%;
                  max-height:60%;">
@@ -43,106 +43,180 @@
                     </br>
                 </div>
             </div>
-<div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b"
-     >
-    <center>
-        
-            <div id="pnlBlockMachine" data-role="collapsible" data-theme="b" data-content-theme="b" data-iconpos="right">
-                <h3>Paro de Máquina</h3>
-                
-                <table style="width: 100%;">
-                    <tr>
-                        <td style="width: 20%;">
-                            <img src="lib/images/paro.png" alt="Su Mobile no permite la producción de esta imagen" height="200"/>
-                        </td>
-                        <td style="width: 80%;">
-                            <table id="maintenanceStop" style="border: solid 0px; width: 100%;">
-                                    <tr id="nroOrderRow">
-                                        <th style="text-align: left; padding-right: 10px;">
-                                            <label class="labelText" style="font-size: 26px;" for="nroOrder">No Orden Mto:*</label>
-                                        </th>
-                                        <td style="text-align: right;" >
-                                            <form class="ui-filterable">
-                                                <input data-type="search" name="nroOrder"  class="labelText" required
-                                                   id="nroOrder" placeholder="Ingresa el Número de Orden">
-                                            </form>
-                                            <ul data-role="listview" data-filter="true" 
-                                                data-filter-reveal="true" data-input="#nroOrder" id="listOrders">
-                                                <li><a href="#">Acura</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: none;" id="technicalName">
-                                        <th style="text-align: left; padding-right: 10px;">
-                                            <label class="labelText" style="font-size: 26px; ">Nombre del Técnico:</label>
-                                        </th>
-                                        <td style="text-align: left;" >
-                                            <label class="labelText" id="nameMaintenance" style="font-size: 26px;color: #FFF;"></label>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: none;" id="technicalPosition">
-                                        <th style="text-align: left; padding-right: 10px;">
-                                            <label class="labelText" style="font-size: 26px;" >Cargo:</label>
-                                        </th>
-                                        <td style="text-align: left;" >
-                                            <label class="labelText" id="positionMaintenance" style="font-size: 26px; color: #FFF;"></label>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: none;" id="technicalType">
-                                        <th style="text-align: left; padding-right: 10px;">
-                                            <label class="labelText" style="font-size: 26px;" >Tipo de Mano de Obra:</label>
-                                        </th>
-                                        <td style="text-align: left;" >
-                                            <label class="labelText" id="typeMaintenance" style="font-size: 26px; color: #FFF;"></label>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: none;" id="passwordTechnical">
-                                        <th style="text-align: left; padding-right: 10px;">
-                                            <label class="labelText" style="font-size: 26px;" >Contraseña:*</label>
-                                        </th>
-                                        <td style="text-align: left;">
-                                            <input class="labelText" id="maintenancePassword" placeholder="Ingresa tu Contraseña"
-                                                   type ="password" required>
-                                        </td>
-                                    </tr>
-                                    <tr >
-                                        <th style="height: 20px;">
-                                            
-                                        </th>
-                                        
-                                    </tr>
-                                    <tr >
-                                        <td  style="text-align: center;" colspan="2">
-                                            <button id="btnValidOrder"
-                                                class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px;" >
-                                                <span class="labelText">Validar Orden</span>
-                                            </button>
-                                        
-                                            
-                                            <button id="btnSignMaintenance" 
-                                            class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px; display: none;" >
-                                                <span class="labelText">Ingresar</span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr style="height: 20px;">
-                                        <th colspan="2" style="color: #FFF; font-size: 14px;">
-                                            </br>
-                                            <span id="lbld">Los campos marcados con * son obligatorios</span>
-                                        </th>
-                                    </tr>
-                                </table>
-                        </td>
-                    </tr>
-                </table>
-                
-            </div>
+
+            <div data-role="header" style="text-align: center; height: 60px; padding: 15px;" id="stopMachineHeader">
+                <span class="tittle-orange">Paro de Máquina</span>
+            </div> 
             
-    </center>
-<!--            fin del Codigo de Mensaje-->
-</div>
+            <div data-role="header" style="text-align: center; height: 60px; padding: 15px; display: none;" id="stopRegisterHeader">
+                <span class="tittle-orange">Registro de Paro</span>
+            </div> 
+
+            <div role="main" class="ui-content jqm-content jqm-fullwidth" data-theme="b"
+                 >
+                <center>
+
+                    <div id="pnlBlockMachine" data-theme="b" data-content-theme="b" data-iconpos="right">
+
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 20%;">
+                                    <img src="lib/images/paro.png" alt="Su Mobile no permite la producción de esta imagen" height="200"/>
+                                </td>
+                                <td style="width: 80%;">
+                                    <table id="maintenanceStop" style="border: solid 0px; width: 100%;">
+                                        <tr id="nroOrderRow">
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" for="nroOrder">No Orden Mto:*</label>
+                                            </th>
+                                            <td style="text-align: right;" >
+                                                <form class="ui-filterable">
+                                                    <input data-type="search" name="nroOrder"  class="labelText" required
+                                                           id="nroOrder" placeholder="Ingresa el Número de Orden">
+                                                </form>
+                                                <ul data-role="listview" data-filter="true" 
+                                                    data-filter-reveal="true" data-input="#nroOrder" id="listOrders">
+                                                    <li><a href="#">Acura</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none;" id="technicalName">
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px; ">Nombre del Técnico:</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <label class="labelText" id="nameMaintenance" style="font-size: 26px;color: #FFF;"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none;" id="technicalPosition">
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Cargo:</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <label class="labelText" id="positionMaintenance" style="font-size: 26px; color: #FFF;"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none;" id="technicalType">
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Tipo de Mano de Obra:</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <label class="labelText" id="typeMaintenance" style="font-size: 26px; color: #FFF;"></label>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none;" id="passwordTechnical">
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Contraseña:*</label>
+                                            </th>
+                                            <td style="text-align: left;">
+                                                <input class="labelText" id="maintenancePassword" placeholder="Ingresa tu Contraseña"
+                                                       type ="password" required>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <th style="height: 20px;" colspan="2">
+
+                                            </th>
+
+                                        </tr>
+                                        <tr >
+                                            <td  style="text-align: center;" colspan="2">
+                                                <button id="btnValidOrder"
+                                                        class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px;" >
+                                                    <span class="labelText">Validar Orden</span>
+                                                </button>
+
+
+                                                <button id="btnSignMaintenance" 
+                                                        class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px; display: none;" >
+                                                    <span class="labelText">Ingresar</span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 20px;">
+                                            <th colspan="2" style="color: #FFF; font-size: 14px;">
+                                                </br>
+                                                <span id="lbld">Los campos marcados con * son obligatorios</span>
+                                            </th>
+                                        </tr>
+                                    </table>
+
+                                    <table id="stopSolution" style="border: solid 0px; width: 100%; display: none;">
+                                        <tr>
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Paro de Máquina No:</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <label class="labelText" id="idStopMachine" style="font-size: 26px; color: #FFF;"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Fecha de Atención:</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <label class="labelText" id="requestDate" style="font-size: 26px; color: #FFF;"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Tiempo de Atención:</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <label class="labelText" id="responseDate" style="font-size: 26px; color: #FFF;"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: left; padding-right: 10px;">
+                                                <label class="labelText" style="font-size: 26px;" >Solución:*</label>
+                                            </th>
+                                            <td style="text-align: left;" >
+                                                <textarea class="labelText" id="solution" style="font-size: 26px; color: #FFF;"></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 20px;">
+                                            <th colspan="2" style="color: #FFF; font-size: 14px;">
+                                                </br>
+                                                <span id="lbld">Los campos marcados con * son obligatorios</span>
+                                            </th>
+                                        </tr>
+                                        <tr >
+                                            <td  style="text-align: center;" colspan="2">
+                                                <table style="width: 100%;">
+                                                    <tr>
+                                                        <td style="text-align: left; width: 50%;">
+                                                            <button id="btnSolution" 
+                                                                    class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px; width: 90%;" >
+                                                                <span class="labelText">Enviar Solución</span>
+                                                            </button>
+                                                        </td>
+                                                        <td style="text-align: right; width: 50%;">
+                                                            <button id="btnContinueStop" 
+                                                                    class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-left" style="height: 80px; width: 90%;">
+                                                                <span class="labelText">Continuar Paro</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </center>
+                <!--            fin del Codigo de Mensaje-->
+            </div>
+
+            <div data-role="footer" style="text-align: center; height: 60px; padding: 15px;">
+                <span class="tittle-orange">FATCON Manager Suite</span>
+            </div> 
         </div> 
-<!--        panel -->
+        <!--        panel -->
 
     </body>
 

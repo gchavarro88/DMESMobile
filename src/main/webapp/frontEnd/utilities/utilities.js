@@ -97,6 +97,10 @@ function addInfoMessage(title, message, time)
     $("#titleMessage").html("</br>" + title + "</br>");
     $("#contentMessage").html("</br>" + message + "</br></br>");
     $("#messages").popup("open");
+    setTimeout(function()
+    {
+        $("#messages").popup("close");
+    }, 5000);
 
 }
 

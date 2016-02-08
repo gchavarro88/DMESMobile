@@ -14,6 +14,7 @@ import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScNotification;
 import co.sip.dmesmobile.entitys.ScStopMachine;
 import co.sip.dmesmobile.factory.Factory;
+import com.sip.dmesmobile.utilities.Utilities;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -204,6 +205,28 @@ public class ScStopDao implements IScStop
         catch (Exception e)
         {
             log.error("Error consultando la lista de correos para el grupo "+idGroup, e);
+            throw e;
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public int updateStopMachineState(String duration, String responseDate, String idStopMachine, String idMaintenance) throws Exception
+    {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        int result = -1;
+        String stringQuery = "UPDATE  dmes.sc_stop_machine  SET duration_real = "+duration
+                +(!Utilities.isEmpty(idMaintenance)?", id_maintenance = (id_maintenance+"+idMaintenance+")":" ")
+                + " WHERE id_stop_machine = "+idStopMachine;
+        try
+        {
+            Query query = entityManager.createNativeQuery(stringQuery);
+            result = query.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando actualizar el paro de máquina", e);
             throw e;
         }
         return result;

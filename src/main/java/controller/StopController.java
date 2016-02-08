@@ -131,6 +131,25 @@ public class StopController
        return result;
     }
     
+    public String updateStopState(String duration, String responseDate, String idStopMachine, String idMaintenance)throws Exception
+    {
+        setStopDao(new ScStopDao());
+        String result = "OPERACION_NO_EXITOSA";
+        try 
+        {
+            int rows = getStopDao().updateStopMachineState(duration, responseDate, idStopMachine, idMaintenance);
+            if(rows > 0)
+            {
+                result = "OPERACION_EXITOSA";
+            }
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando cargar las ordenes de la máquina",e);
+            throw e;
+        }
+       return result;
+    }
     
 
     public ScStopDao getStopDao()

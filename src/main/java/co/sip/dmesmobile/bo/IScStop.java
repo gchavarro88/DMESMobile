@@ -28,5 +28,7 @@ public interface IScStop {
     public String loadMaintenanceOrdersByMachine(String idMachine) throws Exception;
     
     public String[] getListRecipients(String idGroup)throws Exception;
+    
+    public int updateStopMachineState(String duration, String responseDate, String idStopMachine, String idMaintenance)throws Exception;
 }
 
