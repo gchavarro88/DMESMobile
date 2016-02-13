@@ -28,7 +28,7 @@
         if(!Utilities.isEmpty(idStopMachine))
         {
             
-            out.print(Utilities.messageJSON(controller.updateStopState(duration, responseDate, idStopMachine, idMaintenance)));
+            out.print(Utilities.messageJSON(controller.solutionStopState(duration, responseDate, idStopMachine, idMaintenance, idMachineChar)));
             
         }
         else

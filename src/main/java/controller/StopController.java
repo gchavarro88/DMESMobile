@@ -145,13 +145,32 @@ public class StopController
         }
         catch (Exception e)
         {
-            log.error("Error intentando cargar las ordenes de la máquina",e);
+            log.error("Error intentando actualizar el paro de máquina desde el controller",e);
             throw e;
         }
        return result;
     }
     
-
+    public String solutionStopState(String duration, String responseDate, String idStopMachine, String idMaintenance, String idMachine)throws Exception
+    {
+        setStopDao(new ScStopDao());
+        String result = "OPERACION_NO_EXITOSA";
+        try 
+        {
+             int rows = getStopDao().solutionStopMachine(duration, responseDate, idStopMachine, idMaintenance, idMachine);
+            if(rows > 0)
+            {
+                result = "OPERACION_EXITOSA";
+            }
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando actualizar el paro de máquina desde el controller",e);
+            throw e;
+        }
+       return result;
+    }
+    
     public ScStopDao getStopDao()
     {
         return stopDao;

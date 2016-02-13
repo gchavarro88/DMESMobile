@@ -119,7 +119,8 @@ public class DMESConstants
     
     public static String HEADER_MESSAGE_STOP_MACHINE = "Saludos Cordiales,\n\n\n"
             + "Se informa que ha ocurrido un error en producción,"
-            + " lo cual solicita presencia del persona de mantenimiento en la Máquina: ";
+            + " lo cual solicita presencia del personal"
+            + " de mantenimiento y de producción en la Máquina: ";
     
     public static String BODY_MESSAGE_STOP_MACHINE= "\n\nSe ha generado una contraseña que le permitirá ingresar al sistema, "
             + "para dar solución y poner la máquina nuevamente en funcionamiento.\n\n\n"
@@ -132,7 +133,7 @@ public class DMESConstants
     
     public static String PASSWORD_NOTIFICATION = "notification";
     
-    public static String PERSONAL_NAME_NOTIFICATION = "Fatcon Notificator";
+    public static String PERSONAL_NAME_NOTIFICATION = "Fatcon Notifier";
     
 }   
 

@@ -174,3 +174,29 @@ function removeAccent(value)
     value = value.replace(/Ñ/g, "N");
     return value;
 }
+
+
+
+function turnBaliza(estado)
+    {
+        $.blockUI({ message: '<h1>Encendiendo la Baliza...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        $.ajax
+                ({
+                    url: URL_BALIZA_MANTENIMIENTO,
+                    method: "POST",
+                    data:
+                    {
+                        estado: estado
+                    }
+                })
+                .done(function (data, status)
+                {
+                    addInfoMessage(MESSAGE_TITTLE_SUCCES, "Se ha encendido la baliza", 1);   
+                    $.unblockUI();
+                })
+                .fail(function (data, status)
+                {
+                    addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, "No fue posible encender la baliza", 1);   
+                    $.unblockUI();
+                }); 
+    }

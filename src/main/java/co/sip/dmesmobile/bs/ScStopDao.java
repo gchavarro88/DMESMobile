@@ -15,6 +15,7 @@ import co.sip.dmesmobile.entitys.ScNotification;
 import co.sip.dmesmobile.entitys.ScStopMachine;
 import co.sip.dmesmobile.factory.Factory;
 import com.sip.dmesmobile.utilities.Utilities;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -215,14 +216,26 @@ public class ScStopDao implements IScStop
     public int updateStopMachineState(String duration, String responseDate, String idStopMachine, String idMaintenance) throws Exception
     {
         entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        entityManager.getTransaction().begin();
         int result = -1;
         String stringQuery = "UPDATE  dmes.sc_stop_machine  SET duration_real = "+duration
-                +(!Utilities.isEmpty(idMaintenance)?", id_maintenance = (id_maintenance+"+idMaintenance+")":" ")
+                +(!Utilities.isEmpty(idMaintenance)?", id_maintenance = ("+idMaintenance+")":" ")
+                +", response_date = TO_TIMESTAMP('"+responseDate+"','DD/MM/YYYY HH24:MI:SS') "
                 + " WHERE id_stop_machine = "+idStopMachine;
         try
         {
             Query query = entityManager.createNativeQuery(stringQuery);
             result = query.executeUpdate();
+            
+            if(!Utilities.isEmpty(idMaintenance))
+            {
+                String queryMaintenance = "UPDATE dmes.ot_maintenance SET duration = "+duration
+                        +", response_date = TO_TIMESTAMP('"+responseDate+"','DD/MM/YYYY HH24:MI:SS') "
+                        + "WHERE id_maintenance = "+idMaintenance;
+                query = entityManager.createNativeQuery(stringQuery);
+                query.executeUpdate();
+            }
+            entityManager.getTransaction().commit();
         }
         catch (Exception e)
         {
@@ -232,5 +245,48 @@ public class ScStopDao implements IScStop
         return result;
     }
 
-    
+    @Override
+    @Transactional
+    public int solutionStopMachine(String duration, String responseDate, String idStopMachine, String idMaintenance, String idMachine) throws Exception
+    {
+        entityManager = Factory.getEntityManagerFactory().createEntityManager();
+        entityManager.getTransaction().begin();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        String endDate = calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.MONTH+1)
+                +"/"+calendar.get(Calendar.YEAR)+" "+calendar.get(Calendar.HOUR_OF_DAY)+":"+
+                calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
+        int result = -1;
+        String stringQuery = "UPDATE  dmes.sc_stop_machine  SET duration_real = "+duration
+                +(!Utilities.isEmpty(idMaintenance)?", id_maintenance = "+idMaintenance+"":" ")
+                +", response_date = TO_TIMESTAMP('"+responseDate+"','DD/MM/YYYY HH24:MI:SS'), state =  "+3
+                +", end_date = TO_TIMESTAMP('"+endDate+"','DD/MM/YYYY HH24:MI:SS')"
+                + " WHERE id_stop_machine = "+idStopMachine;
+        try
+        {
+            Query query = entityManager.createNativeQuery(stringQuery);
+            result = query.executeUpdate();
+            
+            if(!Utilities.isEmpty(idMaintenance))
+            {
+                String queryMaintenance = "UPDATE dmes.ot_maintenance SET duration = "+duration
+                        +", response_date = TO_TIMESTAMP('"+responseDate+"','DD/MM/YYYY HH24:MI:SS') "
+                        +", end_date = TO_TIMESTAMP('"+endDate+"','DD/MM/YYYY HH24:MI:SS')"
+                        + "WHERE id_maintenance = "+idMaintenance;
+                query = entityManager.createNativeQuery(queryMaintenance);
+                query.executeUpdate();
+            }
+            String queryMachine = "UPDATE dmes.sc_machine SET id_state = "+1+" WHERE "
+                    + "id_machine = "+idMachine;
+            query = entityManager.createNativeQuery(queryMachine);
+            query.executeUpdate();
+            entityManager.getTransaction().commit();
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando actualizar el paro de máquina", e);
+            throw e;
+        }
+        return result;
+    }
 }

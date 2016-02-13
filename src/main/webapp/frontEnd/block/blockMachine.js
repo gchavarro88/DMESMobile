@@ -6,6 +6,10 @@
 var stopMachine = null;
 var orders = null;
 var countDate = null;
+var hours = 0;
+var minutes = 0;
+var seconds = 0;
+var maintenance = null;
 $(document).ready(function ()
 {
 //    $( "#pnlBlockMachine" ).collapsible(
@@ -21,6 +25,10 @@ $(document).ready(function ()
     {
         $("#listOrders").show(2000);
     });
+    
+    
+    loadMaintenanceOrders();
+    getTypeStop();
     
     function loadMaintenanceOrders()
     {
@@ -107,7 +115,18 @@ $(document).ready(function ()
                         stopMachine = data;
                         if(stopMachine.idMaintenance !== null &&  stopMachine.idMaintenance !== "null")//Paro de tipo mantenimiento
                         {
-                            
+                            if(stopMachine.idMaintenance > 0)
+                            {
+                                for(var i=0; i< orders.length; i++)
+                                {
+                                    if(orders[i].idMaintenance === stopMachine.idMaintenance)
+                                    {
+                                        $("#nroOrder").val(orders[i].idOrderMaintenance);
+                                        break;
+                                    }
+                                }
+                                $("#nroOrder").prop("disabled", true);
+                            }
                         }
                         else //Paro de tipo Producción
                         {
@@ -148,6 +167,7 @@ $(document).ready(function ()
     function showMenuMaintenance()
     {
         $("#nroOrder").attr("disabled","disabled");
+        $("#nroOrder").prop("disabled", true);
         $("#technicalName").slideDown(2000);
         $("#technicalPosition").slideDown(2000);
         $("#technicalType").slideDown(2000);
@@ -194,9 +214,11 @@ $(document).ready(function ()
         });
         
         var currentDate = new Date();
-        var stringCurrentDate = ((currentDate.getDate()+1) < 10 ? '0' : '') + (currentDate.getDate()+1) + '/' +
+        var stringCurrentDate = ((currentDate.getDate()) < 10 ? '0' : '') + (currentDate.getDate()) + '/' +
                 ((currentDate.getMonth()+1) < 10 ? '0' : '') + (currentDate.getMonth()+1) + '/' +
-                currentDate.getFullYear()+' '+currentDate.getHours()+':'+currentDate.getMinutes()+':'+currentDate.getSeconds();
+                currentDate.getFullYear()+' '+((currentDate.getHours()) < 10 ? '0' : '')+currentDate.getHours()+
+                ':'+((currentDate.getMinutes()) < 10 ? '0' : '')+currentDate.getMinutes()+
+                ':'+((currentDate.getSeconds()) < 10 ? '0' : '')+currentDate.getSeconds();
         $("#requestDate").text(stringCurrentDate);
         var hours = 0;
         var minutes = 0;
@@ -225,15 +247,14 @@ $(document).ready(function ()
     $("#btnContinueStop").on("click", function()
     {
          clearInterval(countDate);
-         $("#stopSolution").fadeOut(2000, function(){
-            $("#maintenanceStop").fadeIn(2000);
-        });
+         continueStopMachine();
+         
     });
     
     $("#btnSolution").on("click", function()
     {
          clearInterval(countDate);
-         $("#btnSolution").prop("disabled", true);
+         solutionStopMachine();
     });
     
     $(document).keyup(function ()
@@ -262,6 +283,7 @@ $(document).ready(function ()
                     $("#nameMaintenance").text(orders[i].name);
                     $("#positionMaintenance").text(orders[i].position);
                     $("#typeMaintenance").text(orders[i].workforce);
+                    maintenance = orders[i];
                     showMenuMaintenance();
                     return;
                 }
@@ -274,8 +296,143 @@ $(document).ready(function ()
         }
     }
     
-    getTypeStop();
-    loadMaintenanceOrders();
    
+    function solutionStopMachine()
+    {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        var url = "backEnd/block/solutionStopMachine.jsp";
+        $.ajax
+                ({
+                    url: url,
+                    method: "POST",
+                    data:
+                    {
+                        idMachine: getCookie(MACHINE_ASSOCIATED_ID),
+                        duration: (hours*60)+(minutes)+((seconds > 30)?1:0),
+                        responseDate: $("#requestDate").text(), 
+                        idMaintenance: maintenance.idMaintenance,
+                        idStopMachine: stopMachine.idStopMachine
+                    }
+                })
+                .done(function (data, status)
+                {
+                    data = convertStringToJSON(data);
+                    if (data !== undefined && data !== null)
+                    {
+                        if(data.message !== null &&  data.message.length > 0 )//Paro de tipo mantenimiento
+                        {
+                            if(data.message === "OPERACION_EXITOSA")
+                            {
+                                addInfoMessage(MESSAGE_TITTLE_SUCCES, MESSAGE_SUCCES, 1);
+                                var urlNext = "mainPage.html";
+                                turnBaliza(0);
+                                setTimeout(function ()
+                                {
+                                    $(document.location).attr('href', urlNext);
+                                }, 2000);
+                                
+                            }
+                            else
+                            {
+                                addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 1);   
+                            }
+                        }
+                        else //Paro de tipo Producción
+                        {
+                            addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 1);
+                        }
+                    }
+                    else if (data.message === null )
+                    {
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                        var urlLoginPage = "Login.html";
+                        $(location).attr('href', urlLoginPage);
+                        $.unblockUI();
+                    }
+                    else 
+                    {
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 5);
+                        $.unblockUI();
+                    }    
+                    $.unblockUI();
+                })
+                .fail(function (data, status)
+                {
+                    window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                    var urlLoginPage = "Login.html";
+                    $(location).attr('href', urlLoginPage);
+                    $.unblockUI();
+                }); 
+    }
+   
+    function continueStopMachine()
+    {
+        $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
+        var url = "backEnd/block/continueStopMachine.jsp";
+        $.ajax
+                ({
+                    url: url,
+                    method: "POST",
+                    data:
+                    {
+                        idMachine: getCookie(MACHINE_ASSOCIATED_ID),
+                        duration: (hours*60)+(minutes)+((seconds > 30)?1:0),
+                        responseDate: $("#requestDate").text(), 
+                        idMaintenance: maintenance.idMaintenance,
+                        idStopMachine: stopMachine.idStopMachine
+                    }
+                })
+                .done(function (data, status)
+                {
+                    data = convertStringToJSON(data);
+                    if (data !== undefined && data !== null)
+                    {
+                        if(data.message !== null &&  data.message.length > 0 )//Paro de tipo mantenimiento
+                        {
+                            if(data.message === "OPERACION_EXITOSA")
+                            {
+                                addInfoMessage(MESSAGE_TITTLE_SUCCES, MESSAGE_SUCCES, 1);
+                                $("#stopSolution").fadeOut(2000, function()
+                                {
+                                   $("#maintenanceStop").fadeIn(2000);   
+                                       addInfoMessage("Paro de Máquina", "La Máquina seguirá en paro hasta que sea solucionado",3);
+                                       $("#maintenancePassword").val("");
+                                });
+                            }
+                            else
+                            {
+                                addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 1);   
+                            }
+                        }
+                        else //Paro de tipo Producción
+                        {
+                            addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 1);
+                        }
+                    }
+                    else if (data.message === null )
+                    {
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                        var urlLoginPage = "Login.html";
+                        $(location).attr('href', urlLoginPage);
+                        $.unblockUI();
+                    }
+                    else 
+                    {
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 5);
+                        $.unblockUI();
+                    }    
+                    turnBaliza(1);
+                    $.unblockUI();
+                })
+                .fail(function (data, status)
+                {
+                    window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                    var urlLoginPage = "Login.html";
+                    $(location).attr('href', urlLoginPage);
+                    $.unblockUI();
+                }); 
+    }
+    
+    
     
 });

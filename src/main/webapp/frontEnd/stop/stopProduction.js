@@ -151,10 +151,12 @@ $(document).ready(function ()
                     {   
                         window.parent.addInfoMessage(MESSAGE_TITTLE_SUCCES, MESSAGE_SUCCES, 5);
                         $.unblockUI();
+                        turnBaliza(1);
                         setTimeout(function()
                         {                      
                             window.parent.location.href = url;
                         }, 3000);
+                        
                     }
                     else
                     {

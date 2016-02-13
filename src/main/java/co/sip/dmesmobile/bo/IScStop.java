@@ -30,5 +30,7 @@ public interface IScStop {
     public String[] getListRecipients(String idGroup)throws Exception;
     
     public int updateStopMachineState(String duration, String responseDate, String idStopMachine, String idMaintenance)throws Exception;
+    
+    public int solutionStopMachine(String duration, String responseDate, String idStopMachine, String idMaintenance, String idMachine)throws Exception;
 }
 

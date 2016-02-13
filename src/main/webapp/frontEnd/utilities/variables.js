@@ -108,3 +108,8 @@
     var MACHINE_ASSOCIATED_SERIE = "serieMachine";
     var MACHINE_ASSOCIATED_MARK = "markMachine";
     var MACHINE_SELECTED = "";
+    
+    
+    var URL_BALIZA_MANTENIMIENTO = "http://127.0.0.1:8002/driver_tarjeta/baliza/mantenimiento";
+    var URL_BALIZA_LLAMADO = "http://127.0.0.1:8002/driver_tarjeta/baliza/llamado";
+    var URL_BALIZA_BAJA_PRODUCCION = "http://127.0.0.1:8002/driver_tarjeta/baliza/baja_produccion";
