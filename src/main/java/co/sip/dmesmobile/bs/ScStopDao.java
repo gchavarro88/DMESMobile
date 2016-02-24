@@ -157,6 +157,7 @@ public class ScStopDao implements IScStop
                 + "p.last_name||' '||p.first_name AS name, e.position, w.type_workforce \n" +
         "FROM dmes.ot_maintenance om, dmes.sc_machine_part mp, dmes.sc_workforce w, dmes.sc_employee e, dmes.sc_person p\n" +
         "WHERE om.id_machine_part = mp.id_machine_part AND mp.id_machine = "+idMachine+
+        "AND om.id_maintenance_state = 1 "+//Estado pendiente para las ordenes de mantenimiento
         "AND om.id_workforce = w.id_workforce AND w.id_employee = e.id_employee\n" +
         "AND e.id_person = p.id_person";
         Query query = entityManager.createNativeQuery(stringQuery);
@@ -269,7 +270,7 @@ public class ScStopDao implements IScStop
             
             if(!Utilities.isEmpty(idMaintenance))
             {
-                String queryMaintenance = "UPDATE dmes.ot_maintenance SET duration = "+duration
+                String queryMaintenance = "UPDATE dmes.ot_maintenance SET duration = "+duration+", id_maintenance_state = "+2
                         +", response_date = TO_TIMESTAMP('"+responseDate+"','DD/MM/YYYY HH24:MI:SS') "
                         +", end_date = TO_TIMESTAMP('"+endDate+"','DD/MM/YYYY HH24:MI:SS')"
                         + "WHERE id_maintenance = "+idMaintenance;
