@@ -118,16 +118,16 @@ public class DMESConstants
     public static String SUBJECT_MAIL_BLOCK_MACHINE_STOP_PRODUCTION = "[FATCON] Paro de Máquina - Solicitud de Personal de Producción";
     
     public static String HEADER_MESSAGE_STOP_MACHINE = "Saludos Cordiales,\n\n\n"
-            + "Se informa que ha ocurrido un error en producción,"
-            + " lo cual solicita presencia del personal"
-            + " de mantenimiento y de producción en la Máquina: ";
+            + "Se informa que ha ocurrido una anomalía en producción,"
+            + " lo cual solicita la presencia del personal"
+            + " de mantenimiento y/o de producción en la Máquina: ";
     
     public static String BODY_MESSAGE_STOP_MACHINE= "\n\nSe ha generado una contraseña que le permitirá ingresar al sistema, "
             + "para dar solución y poner la máquina nuevamente en funcionamiento.\n\n\n"
             + "Contraseña: ";
     
     public static String FOOTER_MESSAGE_STOP_MACHINE = "\n\nEsta notificación es generada automáticamente, por favor no responda\n\n"
-            + "Cordialmente,\n\n Fatcon Manager Suite\nhttp://www.sipingenieria.com.co";
+            + "Cordialmente,\n\n Fatcon Manager Suite\nhttp://www.sipingenieria.com";
     
     public static String USER_NAME_NOTIFICATION = "notification.sipingenieria@gmail.com";
     

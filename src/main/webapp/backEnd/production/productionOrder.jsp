@@ -13,15 +13,18 @@
 <%@page import="java.net.InetAddress;" %>
 <%
     
-    String duration = request.getParameter("duration");
-    String responseDate = request.getParameter("responseDate");
-    String idMaintenance = request.getParameter("idMaintenance");
-    String idStopMachine = request.getParameter("idStopMachine");
+    String idTerminal = request.getParameter("id_terminal");
+    String processDate = request.getParameter("process_date");
+    String processDateArray[] = processDate.split(",");
     
     StopController controller = new StopController();
-    List<ScGroup> listGroups = null;
     try 
     {   
+        if(processDateArray != null && processDateArray.length > 0 && idTerminal.length() > 0)
+        {
+            
+        }
+        
             listGroups = controller.findAllGroups();
             if(!listGroups.isEmpty())
             {
