@@ -26,6 +26,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,7 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 {
     @NamedQuery(name = "OtProductionOrder.findAll", query = "SELECT o FROM OtProductionOrder o"),
     @NamedQuery(name = "OtProductionOrder.findByIdProductionOrder", query = "SELECT o FROM OtProductionOrder o WHERE o.idProductionOrder = :idProductionOrder"),
-    @NamedQuery(name = "OtProductionOrder.findCurrentOrders", query = "SELECT o FROM OtProductionOrder o WHERE o.startDate >= :startDate AND o.startDate <= :finalDate"),
+    @NamedQuery(name = "OtProductionOrder.findCurrentOrders", query = "SELECT o FROM OtProductionOrder o WHERE o.startDate >= :startDate AND o.startDate <= :finalDate ORDER BY o.idProductionOrder"),
     @NamedQuery(name = "OtProductionOrder.findByCreationDate", query = "SELECT o FROM OtProductionOrder o WHERE o.creationDate >= :creationDate"),
     @NamedQuery(name = "OtProductionOrder.findByStartDate", query = "SELECT o FROM OtProductionOrder o WHERE o.startDate = :startDate"),
     @NamedQuery(name = "OtProductionOrder.findByEndDate", query = "SELECT o FROM OtProductionOrder o WHERE o.endDate = :endDate")
@@ -68,12 +69,19 @@ public class OtProductionOrder implements Serializable
     @Column(name = "end_date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date endDate;
+    @Column(name = "start_date_real")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date startDateReal;
+    @Column(name = "end_date_real")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date endDateReal;
     @JoinColumn(name = "id_production_state", referencedColumnName = "id_production_state")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     public ScProductionState idProductionState;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrder", fetch = FetchType.EAGER)
+    public List<ScProductOrder> scProductOrderList;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProductionOrder", fetch = FetchType.EAGER)
-    public List<OtProductionProduct> productionsOrders;
     public OtProductionOrder()
     {
     }
@@ -97,6 +105,26 @@ public class OtProductionOrder implements Serializable
     public void setIdProductionOrder(Long idProductionOrder)
     {
         this.idProductionOrder = idProductionOrder;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
 
     public Date getCreationDate()
@@ -139,67 +167,36 @@ public class OtProductionOrder implements Serializable
         this.idProductionState = idProductionState;
     }
 
-    public List<OtProductionProduct> getProductionsOrders()
+    public List<ScProductOrder> getScProductOrderList()
     {
-        return productionsOrders;
+        return scProductOrderList;
     }
 
-    public void setProductionsOrders(List<OtProductionProduct> productionsOrders)
+    public void setScProductOrderList(List<ScProductOrder> scProductOrderList)
     {
-        this.productionsOrders = productionsOrders;
+        this.scProductOrderList = scProductOrderList;
     }
 
-    public String getName()
+    public Date getStartDateReal()
     {
-        return name;
+        return startDateReal;
     }
 
-    public void setName(String name)
+    public void setStartDateReal(Date startDateReal)
     {
-        this.name = name;
+        this.startDateReal = startDateReal;
     }
 
-    public String getDescription()
+    public Date getEndDateReal()
     {
-        return description;
+        return endDateReal;
     }
 
-    public void setDescription(String description)
+    public void setEndDateReal(Date endDateReal)
     {
-        this.description = description;
+        this.endDateReal = endDateReal;
     }
 
     
-    
-    @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (idProductionOrder != null ? idProductionOrder.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OtProductionOrder))
-        {
-            return false;
-        }
-        OtProductionOrder other = (OtProductionOrder) object;
-        if ((this.idProductionOrder == null && other.idProductionOrder != null) || (this.idProductionOrder != null && !this.idProductionOrder.equals(other.idProductionOrder)))
-        {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "{" + "\"idProductionOrder\":\"" + idProductionOrder + "\",\"name\":\"" + name + "\",\"description\":\"" + description + "\",\"creationDate\":\"" + creationDate + "\",\"startDate\":\"" + startDate + "\",\"endDate\":\"" + endDate + "\",\"idProductionState\":\"" + idProductionState.getDescription() + "\"}";
-    }
-
     
 }

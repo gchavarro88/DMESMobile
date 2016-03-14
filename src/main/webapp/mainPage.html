@@ -24,23 +24,25 @@
             <div data-url="demo-page" data-role="page" class="jqm-demos ui-responsive-panel" id="demo-page" data-title=".:FATCON - Manager:.">
                 <!--Codigo de mensaje-->
                 <div data-role="popup" id="messages" data-overlay-theme="a" data-theme="b" 
-                     data-dismissible="true" style="width:100%;
+                     data-dismissible="true" style="width:80%;
                      max-height:60%;">
                     <div data-role="header" data-theme="a">
                         <center>
                             <p id="titleMessage" class="titleMessage">        
                             </p>
                         </center>
-                        </br>
+
                     </div>
                     <div role="main" class="ui-content">    
                         </br></br>
                         <center>
                             <p id="contentMessage" class="contentMessage"></p>
                         </center>
-                        </br>
                     </div>
                 </div>
+                
+                
+               
 
                 <div data-role="header" style="text-align: center; height: 60px; padding: 15px;" data-theme="b">
                     <div class="titleMainPage" >Control de Producción</div>
@@ -57,11 +59,11 @@
                     </div>
                     <ul data-role="listview">
 
-                        <li data-icon="phone" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="llamado">Llamado</a></li>
-                        <li data-icon="alert" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="paro">Paro</a></li>
-                        <li data-icon="action" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="ordenes">Ordenes</a></li>
-                        <li data-icon="check" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="revision">Revisión</a></li>
-                        <li data-icon="mail" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="mensaje">Mensaje</a></li>
+                        <li data-icon="phone" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="llamado" data-rel="back">Llamado</a></li>
+                        <li data-icon="alert" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="paro" data-rel="back">Paro</a></li>
+                        <li data-icon="action" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="ordenes" data-rel="back">Ordenes</a></li>
+                        <li data-icon="check" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="revision" data-rel="back">Revisión</a></li>
+                        <li data-icon="mail" class="ui-shadow-icon"><a href="#" class="itemPanelLeft" id="mensaje" data-rel="back">Mensaje</a></li>
 
                     </ul>
                 </div><!-- /panel -->

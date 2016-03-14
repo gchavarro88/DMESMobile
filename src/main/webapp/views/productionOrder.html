@@ -43,6 +43,27 @@
                     </div>
                 </div>
                 
+                 <!--Codigo de mensaje-->
+                <center>
+                    <div data-role="popup" id="orderDetailPopUp" data-overlay-theme="a" data-theme="b" 
+                     data-dismissible="false" style="width:90%;
+                     max-height:20%;">
+                        <div data-role="header" data-theme="a">
+                            <center>
+                                <p id="detailTitle" class="titleMessage">        
+                                </p>
+                            </center>
+                        </div>
+                        <div role="main" class="ui-content">    
+                            <center>
+                                <p id="detailMessage" class="contentMessage"></p>
+                                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back"
+                                   style="width: 300px;">Cerrar</a>
+                            </center>
+                        </div>
+                    </div>
+                </center>
+                
                 <table data-role="table" id="tableOrders" data-mode="reflow" 
                        class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" 
                        >
@@ -53,15 +74,20 @@
                             <th data-priority="5" class="titleRowProductionOrder">Fecha de Inicio</th>
                             <th data-priority="4" class="titleRowProductionOrder">Fecha Finalización</th>
                             <th data-priority="3" class="titleRowProductionOrder">Estado</th>
+                            <th data-priority="3" class="titleRowProductionOrder">Admin</th>
                         </tr>
                     </thead>
-                    <tbody id="bodyTableOrders" class="rowProductionOrder">
-                        <tr>
-                            <th class='rowProductionOrder'></th>
-                            <td class='rowProductionOrder'></td>
-                            <td class='rowProductionOrder'></td>
-                            <td class='rowProductionOrder'></td>
-                            <td class='rowProductionOrder'></td>
+                    <tbody id="bodyTableOrders" >
+                        <tr class="rowProductionOrder">
+                            <th ></th>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td >
+                                <a href="#"  
+                                   class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b">Iniciar</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -27,6 +27,7 @@ and open the template in the editor.
     margin-left: -10px; 
     margin-top: -10px;
     background-color: #000;
+    
 }
 
 .itemPanelLeft
@@ -58,10 +59,10 @@ and open the template in the editor.
     text-shadow: 1px 1px 1px black;
 }
 
-
 .titleMessage
 {
     padding-left: 15px;
+    padding-top: 15px;
     padding-right:15px;
     font-weight: bold;
     font-size: 40px;
@@ -72,12 +73,33 @@ and open the template in the editor.
     padding-left: 15px;
     padding-right:15px;
     font-size: 32px;
+    color:#44FFEC;
+    
 }
-
-
 .tittle-orange
 {
     color: #FF9D1F;
     font-weight: bold;
     font-size: 24px;
+}
+
+.tableDetailOrder
+{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 8px;   
+}
+
+.rowDetailOrderTd1
+{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 8px;   
+}
+.rowDetailOrderTd2
+{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 8px;   
+    color:#777;
 }

@@ -11,6 +11,7 @@ import co.sip.dmesmobile.entitys.OtProductionOrder;
 import co.sip.dmesmobile.entitys.ScEmployee;
 import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScPerson;
+import co.sip.dmesmobile.entitys.ScProccesProductOrder;
 import com.sip.dmesmobile.utilities.DMESConstants;
 import java.io.BufferedReader;
 import java.io.File;
@@ -132,6 +133,37 @@ public class ValidateSesion
         return result;
     }
     
+    public ScProccesProductOrder findProcessByProductOrder(long idProductOrder, long idMachine)
+    {
+        setPersonDao(new ScPersonDao());
+        ScProccesProductOrder result = null;
+        try
+        {
+            result = getPersonDao().getProcessByProductionOrder(idProductOrder, idMachine);
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando consultar los datos de las ordenes de producción de la máquina con id "+idProductOrder,e);
+            throw e;
+        }
+        return result;
+    }
+    
+    public int initProcessProduction(long idProductOrder, long idMachine, int idState)
+    {
+        setPersonDao(new ScPersonDao());
+        int result = 0;
+        try
+        {
+            result = getPersonDao().initProcessProduction(idProductOrder, idMachine, idState);
+        }
+        catch (Exception e)
+        {
+            log.error("Error intentando consultar los datos de las ordenes de producción de la máquina con id "+idProductOrder,e);
+            throw e;
+        }
+        return result;
+    }
     
     public ScPersonDao getPersonDao()
     {

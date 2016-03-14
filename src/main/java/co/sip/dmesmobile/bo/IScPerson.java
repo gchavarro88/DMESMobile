@@ -10,6 +10,7 @@ import co.sip.dmesmobile.entitys.OtProductionOrder;
 import co.sip.dmesmobile.entitys.ScEmployee;
 import co.sip.dmesmobile.entitys.ScMachine;
 import co.sip.dmesmobile.entitys.ScPerson;
+import co.sip.dmesmobile.entitys.ScProccesProductOrder;
 import java.util.Date;
 import java.util.List;
 
@@ -36,11 +37,11 @@ public interface IScPerson {
     public List<ScMachine> getAllMachines();
             
     public List<OtProductionOrder> getProductionOrderByIdMachine(long idMachine, Date startDate, Date finalDate);
-    /**
-     * Get ScPerson List
-     *
-     * @return 
-     */
+    
+    public ScProccesProductOrder getProcessByProductionOrder(long idProductionOrder, long idMachine);
+    
+    public int initProcessProduction(long idProductionOrder, long idMachine, int idState);
+            
     public List<ScPerson> getAllScPersons();
 
 }

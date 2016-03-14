@@ -37,7 +37,8 @@ function redondear(numero, digitos)
 function isEmpty(value)
 {
     var result = true;
-    if (value !== null)
+    if (value !== undefined && value !== "undefined" &&
+            value !== null && value !== 'null')
     {
         value = value.replace(/ /g, '');
         if (value.length > 0)
@@ -94,8 +95,8 @@ function addInfoMessage(title, message, time)
 {
     time = time * 1000;
     $.unblockUI();
-    $("#titleMessage").html("</br>" + title + "</br>");
-    $("#contentMessage").html("</br>" + message + "</br></br>");
+    $("#titleMessage").html(title);
+    $("#contentMessage").html(message + "</br>");
     $("#messages").popup("open");
     setTimeout(function()
     {
@@ -103,6 +104,7 @@ function addInfoMessage(title, message, time)
     }, 5000);
 
 }
+
 
 function setCookie(cname, cvalue, years) 
 {
