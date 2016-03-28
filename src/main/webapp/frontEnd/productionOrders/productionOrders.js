@@ -63,7 +63,7 @@ $(document).ready(function ()
                                 $tdParent = $(this).parent();
                                 $trParent = $($tdParent).parent();
                                 $trParent.find("td:eq(3)").html("</br> EN PROCESO");
-                                
+                                registerProcess(idMachine, selection);
                             });
                             var idState = productionOrdersList.listProductionOrders[i].idProductionState.idProductionState;
                             if(i > 0 || idState > 1)
@@ -176,7 +176,69 @@ $(document).ready(function ()
                 });
     }
 
+    
+    function registerProcess(idMachine, idOrderProduction)
+    {
 
+        $.blockUI({message: '<h1>Cargando...</h1>', overlayCSS: {backgroundColor: '#FFF'}});
+        var url = "../backEnd/mainPage/loadDetailOrder.jsp";
+        $.ajax
+                ({
+                    url: url,
+                    method: "POST",
+                    data:
+                            {
+                                idMachine: idMachine,
+                                idOrderProduction: idOrderProduction
+                            }
+                })
+                .done(function (data, status)
+                {
+                    data = convertStringToJSON(data);
+                    if (data !== undefined && data !== null)
+                    {
+                        var order = data.idProductOrder.idOrder;
+                        var productOrder = data.idProductOrder;
+                        $.ajax
+                        ({
+                            url: URL_INSPECTOR_REGISTER_ORDER,
+                            method: "POST",
+                            data:
+                                    {
+                                        idMachine: idMachine,
+                                        idOrderProduction: idOrderProduction,
+                                        idProcessProduction: data.idProcessProductOrder
+                                    }
+                        })
+                        .done(function (data, status)
+                        {
+                            window.parent.addInfoMessage(MESSAGE_TITTLE_SUCCES, MESSAGE_SUCCES, 5);
+                        })
+                        .fail(function (data, status)
+                        {
+                            window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                            $.unblockUI();
+                        });
+                    }
+                    else if (data.message === null)
+                    {
+                        window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                        $.unblockUI();
+                    }
+                    else
+                    {
+                        window.parent.addInfoMessage("Proceso no encontrado", data.message, 5);
+                        $.unblockUI();
+                    }
+                    $.unblockUI();
+                })
+                .fail(function (data, status)
+                {
+                    window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, MESSAGE_ERROR_ADMINISTRATOR, 5);
+                    $.unblockUI();
+                });
+    }
+    
     function initProcess(idMachine, idOrderProduction)
     {
 

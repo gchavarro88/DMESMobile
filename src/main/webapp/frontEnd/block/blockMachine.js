@@ -301,6 +301,12 @@ $(document).ready(function ()
     {
         $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
         var url = "backEnd/block/solutionStopMachine.jsp";
+        var idMaintenanceSolution = -1;
+        if(maintenance !== undefined && maintenance !== null
+            && maintenance !== "null")
+        {
+            idMaintenanceSolution = maintenance.idMaintenance;
+        }
         $.ajax
                 ({
                     url: url,
@@ -310,7 +316,7 @@ $(document).ready(function ()
                         idMachine: getCookie(MACHINE_ASSOCIATED_ID),
                         duration: (hours*60)+(minutes)+((seconds > 30)?1:0),
                         responseDate: $("#requestDate").text(), 
-                        idMaintenance: maintenance.idMaintenance,
+                        idMaintenance: idMaintenanceSolution,
                         idStopMachine: stopMachine.idStopMachine
                     }
                 })
@@ -369,6 +375,12 @@ $(document).ready(function ()
     {
         $.blockUI({ message: '<h1>Cargando...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
         var url = "backEnd/block/continueStopMachine.jsp";
+        var idMaintenanceSolution = -1;
+        if(maintenance !== undefined && maintenance !== null
+            && maintenance !== "null")
+        {
+            idMaintenanceSolution = maintenance.idMaintenance;
+        }
         $.ajax
                 ({
                     url: url,
@@ -378,7 +390,7 @@ $(document).ready(function ()
                         idMachine: getCookie(MACHINE_ASSOCIATED_ID),
                         duration: (hours*60)+(minutes)+((seconds > 30)?1:0),
                         responseDate: $("#requestDate").text(), 
-                        idMaintenance: maintenance.idMaintenance,
+                        idMaintenance: idMaintenanceSolution,
                         idStopMachine: stopMachine.idStopMachine
                     }
                 })

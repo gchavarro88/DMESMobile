@@ -27,7 +27,10 @@
     {   
         if(!Utilities.isEmpty(idStopMachine))
         {
-            
+            if(idMaintenance == null || idMaintenance.equals("-1"))
+            {
+                idMaintenance = null;
+            }
             out.print(Utilities.messageJSON(controller.updateStopState(duration, responseDate, idStopMachine, idMaintenance)));
             
         }
