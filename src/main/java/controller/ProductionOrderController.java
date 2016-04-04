@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class ProductionOrderController
 {
-    private final static Logger log = Logger.getLogger(ScUsersDao.class);
+    private final static Logger log = Logger.getLogger(ProductionOrderController.class);
     ScStopDao stopDao;
     
     

@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
  */
 public class Login
 {
-    private final static Logger log = Logger.getLogger(ScUsersDao.class);
+    private final static Logger log = Logger.getLogger(Login.class);
     ScUsersDao usersDao;
     ScUsers user;
 

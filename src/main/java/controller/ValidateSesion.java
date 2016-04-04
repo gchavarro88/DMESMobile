@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  */
 public class ValidateSesion
 {
-    private final static Logger log = Logger.getLogger(ScUsersDao.class);
+    private final static Logger log = Logger.getLogger(ValidateSesion.class);
     ScPersonDao personDao;
     ScPerson person;
     ScEmployee employee;

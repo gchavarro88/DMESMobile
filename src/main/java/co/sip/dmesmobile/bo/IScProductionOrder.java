@@ -5,6 +5,8 @@
  */
 package co.sip.dmesmobile.bo;
 
+import java.util.Date;
+
 /**
  *
  * @author user
@@ -12,6 +14,7 @@ package co.sip.dmesmobile.bo;
 public interface IScProductionOrder 
 {
 
+    public void insertLogInformation(Long idProcess, Long idOrder, Long idMachine, Date creationDate) throws Exception;   
     
     public void saveProductionOrder() throws Exception;
 }

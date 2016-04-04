@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  */
 public class StopController
 {
-    private final static Logger log = Logger.getLogger(ScUsersDao.class);
+    private final static Logger log = Logger.getLogger(StopController.class);
     ScStopDao stopDao;
     
     
