@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>co.sip.dmes</groupId>
-    <artifactId>DMESMobile</artifactId>
+    <artifactId>FATCONManagerMobile</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>DMESMobile</name>
+    <name>FATCONManagerMobile</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
