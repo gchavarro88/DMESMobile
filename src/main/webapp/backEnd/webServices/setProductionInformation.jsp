@@ -12,6 +12,7 @@
     String idProcess = request.getParameter("idProcess");
     String idOrder = request.getParameter("idOrder");
     String creationDate = request.getParameter("creationDate");
+    String arrayDates [] = creationDate.split(",");
     String idMachine = request.getParameter("idMachine");
     ProductionInformationController controller = new ProductionInformationController();
     try 
@@ -19,8 +20,11 @@
         if(!Utilities.isEmpty(idOrder) && !Utilities.isEmpty(idProcess) && 
                 !Utilities.isEmpty(idMachine) && !Utilities.isEmpty(creationDate))
         {
-            controller.insertProductionInformation(new Long(idProcess),new Long(idOrder),
-                    new Long(idMachine), new Date(creationDate));
+            for(String date: arrayDates)
+            {
+                controller.insertProductionInformation(new Long(idProcess),new Long(idOrder),
+                new Long(idMachine), new Date(date));
+            }
         }
     }
     catch(Exception e)
