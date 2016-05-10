@@ -113,6 +113,8 @@
     var URL_BALIZA_MANTENIMIENTO = "http://127.0.0.1:8002/driver_tarjeta/baliza/mantenimiento";
     var URL_BALIZA_LLAMADO = "http://127.0.0.1:8002/driver_tarjeta/baliza/llamado";
     var URL_BALIZA_BAJA_PRODUCCION = "http://127.0.0.1:8002/driver_tarjeta/baliza/baja_produccion";
+    var URL_BALIZA_SET_STATE = "http://68.168.99.138:12000/driver_tarjeta/baliza";
     
-    
-    var URL_INSPECTOR_REGISTER_ORDER = "http://127.0.0.1:8002/driver_tarjeta/registro_orden_proceso";
+    //var URL_INSPECTOR_REGISTER_ORDER = "http://127.0.0.1:8002/driver_tarjeta/registro_orden_proceso";
+    //Url Modificada por Jhon Wilmer
+    var URL_INSPECTOR_REGISTER_ORDER = "http://68.168.99.138:12000/driver_tarjeta/registro_orden_proceso";

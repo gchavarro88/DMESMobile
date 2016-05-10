@@ -53,8 +53,11 @@ $(document).ready(function ()
                             $newElementList.find("td:eq(2)").html("</br>"+getDate(productionOrdersList.listProductionOrders[i].endDate));
                             $newElementList.find("td:eq(3)").html("</br>"+productionOrdersList.listProductionOrders[i].idProductionState.description);
                             $newElementList.find("td:eq(4)").css("vertical-align","text-top");
-                            $newElementList.find("td:eq(4) a").html("Iniciar <label  style='visibility: hidden; position: fixed;'>"+productionOrdersList.listProductionOrders[i].idProductionOrder+"</label>");
+                            $newElementList.find("td:eq(4) a").html("Iniciar <label  style='visibility: hidden; position: fixed;'>"
+                                    +productionOrdersList.listProductionOrders[i].idProductionOrder+"</label>"); //Se guarda a un lado y oculto el id de la orden
 
+                            //Funcionalidad para el botón Iniciar
+                            
                             $newElementList.find("td:eq(4) a").on("click", function ()
                             {
                                 var selection = $(this).find("label").text().trim();

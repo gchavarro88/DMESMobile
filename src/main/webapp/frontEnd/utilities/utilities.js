@@ -179,15 +179,16 @@ function removeAccent(value)
 
 
 
-function turnBaliza(estado)
+function turnBaliza(idMachine, estado)
     {
         $.blockUI({ message: '<h1>Encendiendo la Baliza...</h1>', overlayCSS: { backgroundColor: '#FFF' } }); 
         $.ajax
                 ({
-                    url: URL_BALIZA_MANTENIMIENTO,
+                    url: URL_BALIZA_SET_STATE,
                     method: "POST",
                     data:
                     {
+                        idMachine: idMachine,
                         estado: estado
                     }
                 })

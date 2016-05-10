@@ -331,7 +331,7 @@ $(document).ready(function ()
                             {
                                 addInfoMessage(MESSAGE_TITTLE_SUCCES, MESSAGE_SUCCES, 1);
                                 var urlNext = "mainPage.html";
-                                turnBaliza(0);
+                                turnBaliza(getCookie(MACHINE_ASSOCIATED_ID), 0);
                                 setTimeout(function ()
                                 {
                                     $(document.location).attr('href', urlNext);
@@ -433,7 +433,7 @@ $(document).ready(function ()
                         window.parent.addInfoMessage(MESSAGE_TITTLE_ERROR_ADMINISTRATOR, data.message, 5);
                         $.unblockUI();
                     }    
-                    turnBaliza(1);
+                    turnBaliza(getCookie(MACHINE_ASSOCIATED_ID), 1);
                     $.unblockUI();
                 })
                 .fail(function (data, status)
